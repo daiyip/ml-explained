@@ -1,5 +1,5 @@
 site_name: ML Explained
-site_description: A post-mortem of deep learning, one Transformer building block at a time.
+site_description: "ML Explained: the modern Transformer, one building block at a time."
 repo_url: https://github.com/daiyip/ml-explained
 docs_dir: chapters
 
