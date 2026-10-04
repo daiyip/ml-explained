@@ -1,5 +1,6 @@
 site_name: Machine Learning Explained
 site_description: "Machine Learning Explained: the modern Transformer, one building block at a time."
+site_url: https://ml.daiyip.com/
 repo_url: https://github.com/daiyip/ml-explained
 docs_dir: chapters
 
