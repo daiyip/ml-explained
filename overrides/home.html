@@ -6,7 +6,7 @@
   {"n": 2, "slug": "", "title": "Tokens and embeddings", "path": ["one-hot", "word2vec", "BPE", "image patches"], "q": "Why do learned vectors over subwords and patches work for every modality?"},
   {"n": 3, "slug": "", "title": "Position encoding", "path": ["implicit", "sinusoidal", "learned", "RoPE"], "q": "Why does rotating vectors encode order better than adding to them?"},
   {"n": 4, "slug": "", "title": "Token mixing", "path": ["convolution", "LSTM", "attention", "GQA, MLA"], "q": "Why did attention beat both convolution and recurrence?"},
-  {"n": 5, "slug": "05-channel-mixing/", "title": "Channel mixing", "path": ["sigmoid", "ReLU", "GELU", "SwiGLU", "MoE"], "q": "Why do gated units win, and how do experts add parameters without compute?"},
+  {"n": 5, "slug": "05-channel-mixing/", "meta": ["Intermediate", "20 min read", "8 min lab"], "title": "Channel mixing", "path": ["sigmoid", "ReLU", "GELU", "SwiGLU", "MoE"], "q": "Why do gated units win, and how do experts add parameters without compute?"},
   {"n": 6, "slug": "", "title": "Normalization", "path": ["none", "BatchNorm", "LayerNorm", "RMSNorm"], "q": "Why did normalization work, if not for covariate shift?"},
   {"n": 7, "slug": "", "title": "Residual connections", "path": ["highway", "ResNet", "residual stream"], "q": "Why does an identity path make depth trainable?"},
 ] %}
@@ -36,6 +36,7 @@
       <h3>{{ c.title }}</h3>
       <p class="mlx-chain">{% for s in c.path %}<span>{{ s }}</span>{% endfor %}</p>
       <p class="mlx-card__q">{{ c.q }}</p>
+      {% if c.meta %}<p class="mlx-card__meta">{% for m in c.meta %}<span>{{ m }}</span>{% endfor %}</p>{% endif %}
       <span class="mlx-go">{{ "Read the chapter →" if c.slug else "Coming later" }}</span>
     </div>
   {% if c.slug %}</a>{% else %}</div>{% endif %}
@@ -69,6 +70,12 @@
       <span>Val loss, no residual <b>1.74 &rarr; 3.35</b></span>
       <span>Each experiment, laptop CPU <b>&lt; 10 min</b></span>
     </div>
+    <dl class="mlx-course">
+      <div><dt>Level</dt><dd>Introductory to intermediate</dd></div>
+      <div><dt>You should know</dt><dd>Python and a little linear algebra</dd></div>
+      <div><dt>Format</dt><dd>Readable chapters with runnable notebooks</dd></div>
+      <div><dt>Hardware</dt><dd>A laptop CPU, or a free Colab session</dd></div>
+    </dl>
     <div class="mlx-actions">
       <a class="mlx-btn mlx-btn--primary" href="{{ ('01-anatomy/' ~ ext) | url }}">Start with the anatomy</a>
       <a class="mlx-btn" href="{{ ('05-channel-mixing/' ~ ext) | url }}">Read chapter 5: sigmoid to MoE</a>
@@ -97,9 +104,10 @@
   {% endfor %}
 
   <section class="mlx-explain">
-    <section><span class="mlx-eyebrow">Diagram</span><p>Every architecture drawn with its tensor shapes, so the code has a map.</p></section>
+    <section><span class="mlx-eyebrow">Objectives</span><p>Each chapter opens with what you will be able to do by the end, and closes with questions to check it.</p></section>
+    <section><span class="mlx-eyebrow">Diagram and equations</span><p>Every architecture drawn with its tensor shapes, and the key equations written out next to the code.</p></section>
     <section><span class="mlx-eyebrow">Code</span><p>30 to 100 lines of PyTorch, laid out to match the diagram block by block.</p></section>
-    <section><span class="mlx-eyebrow">Experiment</span><p>A small TinyShakespeare run that reproduces the effect, with and without the idea.</p></section>
+    <section><span class="mlx-eyebrow">Predict, then run</span><p>Before each experiment you guess the outcome, then a small TinyShakespeare run shows the effect with and without the idea.</p></section>
     <section><span class="mlx-eyebrow">Post-mortem</span><p>What the paper claimed, what later work showed, and how sure we are:
       <span class="mlx-tag mlx-tag--established">established</span>
       <span class="mlx-tag mlx-tag--likely">likely</span>

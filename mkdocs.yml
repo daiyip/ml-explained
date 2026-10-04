@@ -21,12 +21,15 @@ theme:
   features:
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - content.code.copy
 
 extra_css:
   - assets/extra.css
 
 extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js
   - assets/extra.js
 
 plugins:
@@ -42,5 +45,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
-  - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb
+  - "Part I · Anatomy":
+      - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
+  - "Part II · Architecture":
+      - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb

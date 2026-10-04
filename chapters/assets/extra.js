@@ -48,7 +48,51 @@
     });
     search.addEventListener("input", apply);
   }
-  function init() { enhance(); finder(); }
+  // Chapter pages: textbook furniture.
+  function textbook() {
+    var content = document.querySelector(".md-content");
+    var h1 = content && content.querySelector(".md-typeset h1");
+    if (!h1) return;
+    // Render the key equations; MathML output needs no extra stylesheet or fonts.
+    if (window.renderMathInElement) {
+      renderMathInElement(content, {
+        delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\(", right: "\\)", display: false }],
+        output: "mathml", throwOnError: false,
+      });
+    }
+    // Number sections and figures after the chapter number in the title ("5.2", "Figure 5.1").
+    var m = h1.textContent.match(/^\s*(\d+)\./);
+    if (!m) return;
+    var ch = m[1], sec = 0, fig = 0;
+    content.querySelectorAll(".md-typeset h2").forEach(function (h) {
+      if (/^(Further reading)/.test(h.textContent.trim())) return;
+      var n = document.createElement("span");
+      n.className = "mlx-secnum";
+      n.textContent = ch + "." + (++sec);
+      h.prepend(n);
+    });
+    content.querySelectorAll(".md-typeset img[alt]").forEach(function (img) {
+      if (!img.alt || /^No description/.test(img.alt) || img.closest("a") || img.closest("figure")) return;
+      var f = document.createElement("figure"), cap = document.createElement("figcaption");
+      f.className = "mlx-figure";
+      cap.innerHTML = "<b>Figure " + ch + "." + (++fig) + "</b> ";
+      cap.append(img.alt);
+      var host = img.parentElement.tagName === "P" && img.parentElement.childNodes.length === 1 ? img.parentElement : img;
+      host.replaceWith(f);
+      f.append(img, cap);
+    });
+    // Reading progress along the top edge.
+    var bar = document.createElement("div");
+    bar.className = "mlx-progress";
+    document.body.append(bar);
+    function progress() {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, scrollY / h) : 0) + ")";
+    }
+    addEventListener("scroll", progress, { passive: true });
+    progress();
+  }
+  function init() { enhance(); finder(); textbook(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
