@@ -1,0 +1,25 @@
+site_name: ML Explained
+site_description: A post-mortem of deep learning, one Transformer building block at a time.
+repo_url: https://github.com/daiyip/ml-explained
+docs_dir: chapters
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+
+markdown_extensions:
+  - tables
+  - admonition
+
+nav:
+  - Home: index.md
+  - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
+  - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb

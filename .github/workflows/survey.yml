@@ -1,0 +1,53 @@
+name: Paper survey
+
+# Run on demand from the Actions tab: pick a lineage, get a Markdown survey of
+# its seed papers and their most-cited follow-ups.
+on:
+  workflow_dispatch:
+    inputs:
+      lineage:
+        description: Lineage to survey (keys of tools/lineages.json)
+        required: true
+        type: choice
+        options:
+          - tokens-and-embeddings
+          - position-encoding
+          - token-mixing
+          - channel-mixing
+          - normalization
+          - residual-connections
+          - objective-and-loss
+          - optimizer
+          - learning-rate-schedule
+          - initialization-and-regularization
+          - scale
+          - post-training
+          - inference-and-use
+      followups:
+        description: Follow-ups to list per seed paper
+        required: false
+        default: "8"
+
+permissions:
+  contents: read
+
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Survey papers
+        env:
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          LINEAGE: ${{ inputs.lineage }}
+          FOLLOWUPS: ${{ inputs.followups }}
+        run: |
+          python tools/survey.py "$LINEAGE" --followups "$FOLLOWUPS" --out "surveys/$LINEAGE.md"
+          cat "surveys/$LINEAGE.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: survey-${{ inputs.lineage }}
+          path: surveys/
