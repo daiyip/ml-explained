@@ -23,7 +23,7 @@
   function finder() {
     var search = document.getElementById("mlx-search");
     if (!search) return;
-    var chips = document.querySelectorAll(".mlx-chip"), none = document.getElementById("mlx-none");
+    var chips = document.querySelectorAll(".mlx-finder .mlx-chip"), none = document.getElementById("mlx-none");
     var cat = "all";
     function apply() {
       var q = search.value.trim().toLowerCase(), shown = 0;

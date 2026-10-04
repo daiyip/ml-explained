@@ -280,3 +280,44 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-box details > summary::after { display: none; }
 .md-typeset .mlx-box details > p { padding-left: 1.2rem; }
 .jupyter-wrapper .jp-OutputArea-output pre, .jupyter-wrapper .jp-OutputArea-output pre * { color: var(--mlx-bench-ink) !important; }
+
+/* ---------- Evolution tree (assets/tree.js) ---------- */
+.mlx-tree { margin-bottom: 2.6rem; scroll-margin-top: 4rem; }
+.mlx-tree__controls { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; margin-bottom: 0.8rem; }
+.mlx-tree__bench { padding: 0.6rem 0.4rem; overflow-x: auto; }
+.mlx-tree__stage { position: relative; width: max-content; }
+.mlx-tree__stage svg { display: block; font-family: var(--mlx-body); }
+.mlx-tree__axis { font-family: var(--mlx-mono); font-size: 10px; fill: #6f7f99; }
+.mlx-tree__grid { stroke: #1f2a3f; stroke-width: 1; }
+.mlx-tree__sep { stroke: #26324a; stroke-width: 1; stroke-dasharray: 2 4; }
+.mlx-tree__lin { font-family: var(--mlx-display); font-size: 12.5px; font-weight: 600; fill: #e4eaf2; }
+.mlx-tree__ch { font-family: var(--mlx-mono); font-size: 9.5px; fill: #6f7f99; }
+.mlx-tree__kind { font-family: var(--mlx-mono); font-size: 9.5px; }
+.mlx-tree__edge { stroke-width: 1.6; opacity: 0.45; transition: opacity 0.15s; }
+.mlx-tree__edge--merge { stroke-dasharray: 3 3; opacity: 0.55; }
+.mlx-tree__node { cursor: pointer; outline: none; transition: opacity 0.15s; }
+.mlx-tree__label { font-size: 10.5px; fill: #c9d4e3; }
+.mlx-tree__label--major { font-weight: 600; fill: #ffffff; }
+.mlx-tree__node:focus-visible .mlx-tree__dot { stroke: #ffffff; stroke-width: 2.5; }
+.mlx-tree.is-focused .mlx-tree__node:not(.is-on) { opacity: 0.22; }
+.mlx-tree.is-focused .mlx-tree__edge { opacity: 0.1; }
+.mlx-tree.is-focused .mlx-tree__edge.is-on { opacity: 1; stroke-width: 2.2; }
+.mlx-tree__tip {
+  position: absolute; z-index: 2; width: 17rem; max-width: calc(100vw - 3rem); padding: 0.7rem 0.85rem 0.8rem;
+  background: var(--mlx-panel); color: var(--mlx-ink); border: 1px solid var(--mlx-rule); border-radius: 8px;
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.55); font-size: 0.74rem; line-height: 1.5;
+}
+.mlx-tree__tip h4 { margin: 0.15rem 0 0.25rem; font-family: var(--mlx-display); font-size: 0.98rem; font-weight: 600; }
+.mlx-tree__tip h4 em { font-style: normal; font-family: var(--mlx-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mlx-accent); border: 1px solid currentColor; border-radius: 999px; padding: 0.05rem 0.4rem; vertical-align: 0.2em; }
+.mlx-tree__tip p { margin: 0 0 0.4rem; color: var(--mlx-ink-soft); }
+.mlx-tree__tip .mlx-tree__tipmeta { display: flex; justify-content: space-between; gap: 0.6rem; margin: 0; font-family: var(--mlx-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.mlx-tree__tip a { color: var(--mlx-accent); font-weight: 500; text-decoration: none; }
+.mlx-tree__tip span { color: var(--mlx-ink-soft); }
+.mlx-tree__legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-top: 0.7rem; font-size: 0.72rem; color: var(--mlx-ink-soft); }
+.mlx-tree__legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.mlx-tree__legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; }
+.mlx-tree__legend i.is-major { width: 10px; height: 10px; border-radius: 50%; background: var(--mlx-ink-soft); }
+.mlx-tree__legend i.is-minor { width: 8px; height: 8px; border-radius: 50%; border: 1.6px solid var(--mlx-ink-soft); margin-left: 0.5rem; }
+@media (prefers-reduced-motion: reduce) { .mlx-tree__edge, .mlx-tree__node { transition: none; } }
+.mlx-wrap { min-width: 0; box-sizing: border-box; width: 100%; }
+.mlx-tree, .mlx-tree__bench { min-width: 0; max-width: 100%; }

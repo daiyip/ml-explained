@@ -5,7 +5,7 @@ hide:
   - toc
 ---
 
-# The evolution tree {: #tree }
+# The tree as plain text {: #tree }
 
 A `*` marks a major step (a full deep dive); everything else is a short note. Years are approximate until each chapter checks them against the papers.
 

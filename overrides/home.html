@@ -82,6 +82,27 @@
     </div>
   </section>
 
+  <section class="mlx-tree" id="mlx-tree" data-base="{{ '' | url }}" data-ext="{{ ext }}">
+    <div class="mlx-shelf__label">
+      <h2>The evolution tree</h2>
+      <span class="mlx-eyebrow">13 lineages &middot; 2010 to 2026</span>
+    </div>
+    <p class="mlx-shelf__desc">Each row is one branch of a building block's history, placed by year. Hover or tap a step to see what changed and everything that led to it.</p>
+    <div class="mlx-tree__controls">
+      <div class="mlx-filters" role="group" aria-label="Show one part of the tree">
+        <button class="mlx-chip" data-tree-part="all" aria-pressed="true">All</button>
+        {% for p in parts %}<button class="mlx-chip" data-tree-part="{{ p.id }}" aria-pressed="false">{{ p.label }}</button>
+        {% endfor %}
+      </div>
+      <button class="mlx-chip" data-tree-major aria-pressed="false">Major steps only</button>
+    </div>
+    <div class="mlx-bench mlx-tree__bench">
+      <div class="mlx-tree__stage"><div class="mlx-tree__tip" role="status" hidden></div></div>
+    </div>
+    <div class="mlx-tree__legend"></div>
+    <noscript><p class="mlx-shelf__desc">The tree needs JavaScript; a plain-text version is at the bottom of this page.</p></noscript>
+  </section>
+
   <div class="mlx-finder" id="lineages">
     <input type="search" id="mlx-search" class="mlx-search" placeholder="Search lineages" aria-label="Search lineages">
     <div class="mlx-filters" role="group" aria-label="Filter lineages by part">
