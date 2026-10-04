@@ -1,4 +1,4 @@
-# ML Explained
+# Machine Learning Explained
 
 *The modern Transformer, one building block at a time.*
 

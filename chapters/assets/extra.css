@@ -321,3 +321,4 @@ body { background: var(--mlx-paper); }
 @media (prefers-reduced-motion: reduce) { .mlx-tree__edge, .mlx-tree__node { transition: none; } }
 .mlx-wrap { min-width: 0; box-sizing: border-box; width: 100%; }
 .mlx-tree, .mlx-tree__bench { min-width: 0; max-width: 100%; }
+@media (max-width: 480px) { .md-header__topic:first-child { font-size: 0.74rem; } }
