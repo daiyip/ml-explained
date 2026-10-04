@@ -1,0 +1,112 @@
+{% extends "main.html" %}
+
+{% set ext = "" if config.use_directory_urls else "index.html" %}
+
+{% set architecture = [
+  {"n": 2, "slug": "", "title": "Tokens and embeddings", "path": ["one-hot", "word2vec", "BPE", "image patches"], "q": "Why do learned vectors over subwords and patches work for every modality?"},
+  {"n": 3, "slug": "", "title": "Position encoding", "path": ["implicit", "sinusoidal", "learned", "RoPE"], "q": "Why does rotating vectors encode order better than adding to them?"},
+  {"n": 4, "slug": "", "title": "Token mixing", "path": ["convolution", "LSTM", "attention", "GQA, MLA"], "q": "Why did attention beat both convolution and recurrence?"},
+  {"n": 5, "slug": "05-channel-mixing/", "title": "Channel mixing", "path": ["sigmoid", "ReLU", "GELU", "SwiGLU", "MoE"], "q": "Why do gated units win, and how do experts add parameters without compute?"},
+  {"n": 6, "slug": "", "title": "Normalization", "path": ["none", "BatchNorm", "LayerNorm", "RMSNorm"], "q": "Why did normalization work, if not for covariate shift?"},
+  {"n": 7, "slug": "", "title": "Residual connections", "path": ["highway", "ResNet", "residual stream"], "q": "Why does an identity path make depth trainable?"},
+] %}
+{% set training = [
+  {"n": 8, "slug": "", "title": "Objective and loss", "path": ["cross-entropy", "GAN", "next-token", "contrastive", "denoising"], "q": "Why is next-token prediction such a rich signal?"},
+  {"n": 9, "slug": "", "title": "Optimizer", "path": ["SGD", "RMSProp", "Adam", "AdamW", "Muon"], "q": "Why does per-parameter scaling help, and when does it hurt?"},
+  {"n": 10, "slug": "", "title": "Learning-rate schedule", "path": ["step decay", "warmup + cosine", "WSD"], "q": "Why do Transformers need warmup at all?"},
+  {"n": 11, "slug": "", "title": "Initialization", "path": ["Xavier", "He", "dropout", "muP"], "q": "Why does signal scale at step zero decide trainability?"},
+] %}
+{% set beyond = [
+  {"n": 12, "slug": "", "title": "Scale", "path": ["scaling laws", "Chinchilla", "in-context learning"], "q": "Why is loss a smooth power law in compute?"},
+  {"n": 13, "slug": "", "title": "Post-training", "path": ["instruction tuning", "RLHF", "DPO", "RL for reasoning"], "q": "What does reward training actually change?"},
+  {"n": 14, "slug": "", "title": "Inference and use", "path": ["chain of thought", "test-time compute", "agents"], "q": "Why does thinking longer help?"},
+] %}
+
+{% macro card(c) %}
+  {% if c.slug %}<a class="mlx-card mlx-card--ready" href="{{ (c.slug ~ ext) | url }}">{% else %}<div class="mlx-card">{% endif %}
+    <div class="mlx-card__top">
+      <span class="mlx-card__num">Ch. {{ c.n }}</span>
+      <span class="mlx-pill {{ 'mlx-pill--ready' if c.slug else '' }}">{{ "Draft" if c.slug else "Planned" }}</span>
+    </div>
+    <h3 class="mlx-card__title">{{ c.title }}</h3>
+    <p class="mlx-chain">{% for s in c.path %}<span>{{ s }}</span>{% endfor %}</p>
+    <p class="mlx-card__q">{{ c.q }}</p>
+  {% if c.slug %}</a>{% else %}</div>{% endif %}
+{% endmacro %}
+
+{% block hero %}
+<section class="mlx-hero">
+  <div class="mlx-hero__inner">
+    <div class="mlx-hero__text">
+      <p class="mlx-eyebrow">A post-mortem of deep learning, 2012 to 2026</p>
+      <h1 class="mlx-hero__title">Why it <em>worked.</em></h1>
+      <p class="mlx-hero__lede">Every part of a modern Transformer has a history. This book takes one apart, traces how each block evolved from AlexNet to today's frontier models, and asks what made each replacement win.</p>
+      <div class="mlx-hero__actions">
+        <a class="mlx-btn mlx-btn--primary" href="{{ ('01-anatomy/' ~ ext) | url }}">Start with the anatomy</a>
+        <a class="mlx-btn" href="#lineages">Browse the lineages</a>
+      </div>
+      <dl class="mlx-facts">
+        <div><dt>Lineages</dt><dd>13</dd></div>
+        <div><dt>Runs on</dt><dd>a laptop CPU</dd></div>
+        <div><dt>Per experiment</dt><dd>&lt; 10 min</dd></div>
+      </dl>
+    </div>
+
+    <figure class="mlx-stack" aria-label="The blocks of a modern Transformer, each linked to its lineage">
+      <figcaption>decoder-only LM &middot; shapes (B, T, d)</figcaption>
+      <div class="mlx-stack__row"><span class="mlx-stack__name">Output head</span><span class="mlx-stack__note">(B, T, vocab)</span></div>
+      <div class="mlx-stack__block">
+        <span class="mlx-stack__label">&times; N blocks</span>
+        <a class="mlx-stack__row mlx-stack__row--hot" href="{{ ('05-channel-mixing/' ~ ext) | url }}"><span class="mlx-stack__name">Feed-forward</span><span class="mlx-stack__note mlx-red">65% of params</span></a>
+        <div class="mlx-stack__row mlx-stack__row--thin"><span class="mlx-stack__name">RMSNorm</span><span class="mlx-stack__note">0.1%</span></div>
+        <div class="mlx-stack__row mlx-stack__row--accent"><span class="mlx-stack__name">Attention</span><span class="mlx-stack__note">33% of params</span></div>
+        <div class="mlx-stack__row mlx-stack__row--thin"><span class="mlx-stack__name">RMSNorm</span><span class="mlx-stack__note">+ residual</span></div>
+      </div>
+      <div class="mlx-stack__row"><span class="mlx-stack__name">Position (RoPE)</span><span class="mlx-stack__note">inside attention</span></div>
+      <div class="mlx-stack__row"><span class="mlx-stack__name">Token embedding</span><span class="mlx-stack__note">(B, T) &rarr; (B, T, d)</span></div>
+      <p class="mlx-stack__margin mlx-red">remove the residual path and validation loss goes from 1.74 to 3.35</p>
+    </figure>
+  </div>
+</section>
+
+<section class="mlx-section" id="lineages">
+  <div class="mlx-section__inner">
+    <header class="mlx-section__head">
+      <p class="mlx-eyebrow">Part II &middot; Architecture</p>
+      <h2>Six blocks, six lineages</h2>
+      <p>Each chapter follows one block from its first form to today's, with vision and language as two branches that merge at the Transformer.</p>
+    </header>
+    <div class="mlx-grid">{% for c in architecture %}{{ card(c) }}{% endfor %}</div>
+
+    <header class="mlx-section__head">
+      <p class="mlx-eyebrow">Part III &middot; Training recipe</p>
+      <h2>How the weights get there</h2>
+    </header>
+    <div class="mlx-grid mlx-grid--4">{% for c in training %}{{ card(c) }}{% endfor %}</div>
+
+    <header class="mlx-section__head">
+      <p class="mlx-eyebrow">Part IV &middot; Beyond the block</p>
+      <h2>Breakthroughs that are not one block</h2>
+    </header>
+    <div class="mlx-grid">{% for c in beyond %}{{ card(c) }}{% endfor %}</div>
+  </div>
+</section>
+
+<section class="mlx-section mlx-section--method">
+  <div class="mlx-section__inner">
+    <header class="mlx-section__head">
+      <p class="mlx-eyebrow">Inside every chapter</p>
+      <h2>Read it, run it, then argue with it</h2>
+    </header>
+    <div class="mlx-method">
+      <div><h3>Diagram</h3><p>Every architecture drawn with its tensor shapes, so the code has a map.</p></div>
+      <div><h3>Code</h3><p>30 to 100 lines of PyTorch, laid out to match the diagram block by block.</p></div>
+      <div><h3>Experiment</h3><p>A small run on TinyShakespeare that reproduces the effect, with and without the idea.</p></div>
+      <div><h3>Post-mortem</h3><p>What the paper claimed, what later work showed, and how sure we are:
+        <span class="mlx-tag mlx-tag--established">established</span>
+        <span class="mlx-tag mlx-tag--likely">likely</span>
+        <span class="mlx-tag mlx-tag--speculative">speculative</span></p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

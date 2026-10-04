@@ -1,33 +1,11 @@
-# ML Explained
+---
+template: home.html
+hide:
+  - navigation
+  - toc
+---
 
-A post-mortem of deep learning from AlexNet (2012) to today's large language models.
-
-Instead of a timeline, the book takes a modern Transformer apart and gives each building block its own chapter, tracing how it evolved and asking why each replacement won. Vision and language appear as two branches inside each lineage, merging where the Transformer unified them.
-
-Every chapter is a runnable notebook: an architecture diagram, 30 to 100 lines of PyTorch, a small experiment that runs on a laptop CPU or a free Colab GPU, and a post-mortem that tags each claim as **[established]**, **[likely]** or **[speculative]**.
-
-## Chapters
-
-| # | Chapter | Status |
-| --- | --- | --- |
-| 0 | Prologue: why deep learning stalled before 2012 | planned |
-| 1 | [Anatomy of a modern Transformer](01-anatomy/index.ipynb) | draft |
-| 2 | Tokens and embeddings | planned |
-| 3 | Position encoding | planned |
-| 4 | Token mixing: convolution, recurrence, attention | planned |
-| 5 | [Channel mixing: sigmoid MLP to Mixture of Experts](05-channel-mixing/index.ipynb) | draft |
-| 6 | Normalization | planned |
-| 7 | Residual connections | planned |
-| 8 | Objective and loss | planned |
-| 9 | Optimizer | planned |
-| 10 | Learning-rate schedule | planned |
-| 11 | Initialization and regularization | planned |
-| 12 | Scale: scaling laws, in-context learning, emergence | planned |
-| 13 | Post-training: instruction tuning, RLHF, RL for reasoning | planned |
-| 14 | Inference and use: test-time compute, tools, agents | planned |
-| 15 | Epilogue: what keeps winning | planned |
-
-## The evolution tree
+# The evolution tree {: #tree }
 
 A `*` marks a major step (a full deep dive); everything else is a short note. Years are approximate until each chapter checks them against the papers.
 

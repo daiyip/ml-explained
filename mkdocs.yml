@@ -5,9 +5,29 @@ docs_dir: chapters
 
 theme:
   name: material
+  custom_dir: overrides
+  font: false
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   features:
     - navigation.sections
+    - navigation.top
     - content.code.copy
+
+extra_css:
+  - assets/extra.css
+
+extra_javascript:
+  - assets/extra.js
 
 plugins:
   - search
@@ -18,6 +38,7 @@ plugins:
 markdown_extensions:
   - tables
   - admonition
+  - attr_list
 
 nav:
   - Home: index.md
