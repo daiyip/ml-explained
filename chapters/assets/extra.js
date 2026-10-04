@@ -19,6 +19,36 @@
       box.append(p, list);
     });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", enhance);
-  else enhance();
+  // Landing page: filter the lineage cards by part chip and by search text.
+  function finder() {
+    var search = document.getElementById("mlx-search");
+    if (!search) return;
+    var chips = document.querySelectorAll(".mlx-chip"), none = document.getElementById("mlx-none");
+    var cat = "all";
+    function apply() {
+      var q = search.value.trim().toLowerCase(), shown = 0;
+      document.querySelectorAll(".mlx-shelf").forEach(function (shelf) {
+        var inShelf = 0;
+        shelf.querySelectorAll(".mlx-card").forEach(function (card) {
+          var ok = (cat === "all" || card.dataset.cat === cat) && card.textContent.toLowerCase().indexOf(q) !== -1;
+          card.hidden = !ok;
+          if (ok) inShelf++;
+        });
+        shelf.hidden = inShelf === 0;
+        shown += inShelf;
+      });
+      none.hidden = shown > 0;
+    }
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        cat = chip.dataset.filter;
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+        apply();
+      });
+    });
+    search.addEventListener("input", apply);
+  }
+  function init() { enhance(); finder(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

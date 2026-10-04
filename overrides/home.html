@@ -22,91 +22,88 @@
   {"n": 14, "slug": "", "title": "Inference and use", "path": ["chain of thought", "test-time compute", "agents"], "q": "Why does thinking longer help?"},
 ] %}
 
-{% macro card(c) %}
-  {% if c.slug %}<a class="mlx-card mlx-card--ready" href="{{ (c.slug ~ ext) | url }}">{% else %}<div class="mlx-card">{% endif %}
-    <div class="mlx-card__top">
-      <span class="mlx-card__num">Ch. {{ c.n }}</span>
-      <span class="mlx-pill {{ 'mlx-pill--ready' if c.slug else '' }}">{{ "Draft" if c.slug else "Planned" }}</span>
+{% set parts = [
+  {"id": "architecture", "label": "Architecture", "title": "Six blocks, six lineages", "desc": "Each chapter follows one block from its first form to today's, with vision and language as two branches that merge at the Transformer.", "cards": architecture},
+  {"id": "training", "label": "Training recipe", "title": "How the weights get there", "desc": "The loss, the optimizer, the schedule and the starting point: the parts of a model that never appear in its diagram.", "cards": training},
+  {"id": "beyond", "label": "Beyond the block", "title": "Breakthroughs that are not one block", "desc": "Scale, post-training and inference changed what the same architecture can do.", "cards": beyond},
+] %}
+
+{% macro card(c, part) %}
+  {% if c.slug %}<a class="mlx-card mlx-card--ready" data-cat="{{ part }}" href="{{ (c.slug ~ ext) | url }}">{% else %}<div class="mlx-card" data-cat="{{ part }}">{% endif %}
+    <div class="mlx-card__thumb">{% include "thumbs/" ~ c.n ~ ".svg" %}</div>
+    <div class="mlx-card__body">
+      <span class="mlx-eyebrow">Chapter {{ c.n }} &middot; {{ "Draft" if c.slug else "Planned" }}</span>
+      <h3>{{ c.title }}</h3>
+      <p class="mlx-chain">{% for s in c.path %}<span>{{ s }}</span>{% endfor %}</p>
+      <p class="mlx-card__q">{{ c.q }}</p>
+      <span class="mlx-go">{{ "Read the chapter →" if c.slug else "Coming later" }}</span>
     </div>
-    <h3 class="mlx-card__title">{{ c.title }}</h3>
-    <p class="mlx-chain">{% for s in c.path %}<span>{{ s }}</span>{% endfor %}</p>
-    <p class="mlx-card__q">{{ c.q }}</p>
   {% if c.slug %}</a>{% else %}</div>{% endif %}
 {% endmacro %}
 
 {% block hero %}
-<section class="mlx-hero">
-  <div class="mlx-hero__inner">
-    <div class="mlx-hero__text">
-      <p class="mlx-eyebrow">A post-mortem of deep learning, 2012 to 2026</p>
-      <h1 class="mlx-hero__title">Why it <em>worked.</em></h1>
-      <p class="mlx-hero__lede">Every part of a modern Transformer has a history. This book takes one apart, traces how each block evolved from AlexNet to today's frontier models, and asks what made each replacement win.</p>
-      <div class="mlx-hero__actions">
-        <a class="mlx-btn mlx-btn--primary" href="{{ ('01-anatomy/' ~ ext) | url }}">Start with the anatomy</a>
-        <a class="mlx-btn" href="#lineages">Browse the lineages</a>
+<div class="mlx-wrap">
+  <section class="mlx-hero">
+    <div class="mlx-eyebrow">A post-mortem of deep learning, 2012 to 2026</div>
+    <h1>Why the breakthroughs actually worked</h1>
+    <p>Every part of a modern Transformer has a history. Take one apart, trace how each block evolved from AlexNet to today's frontier models, and rerun the experiments that show why each replacement won.</p>
+
+    <div class="mlx-bench" role="group" aria-label="The blocks of a modern Transformer, each linked to its lineage">
+      <div class="mlx-bench__label"><span>decoder-only LM</span><span>(B, T, d)</span></div>
+      <div class="mlx-pipe">
+        <span class="mlx-pipe__node">Embed</span>
+        <div class="mlx-pipe__block">
+          <span class="mlx-pipe__rep">&times; N</span>
+          <span class="mlx-pipe__node mlx-pipe__node--thin">Norm</span>
+          <span class="mlx-pipe__node mlx-pipe__node--blue">Attention <small>33%</small></span>
+          <span class="mlx-pipe__add">+</span>
+          <span class="mlx-pipe__node mlx-pipe__node--thin">Norm</span>
+          <a class="mlx-pipe__node mlx-pipe__node--green" href="{{ ('05-channel-mixing/' ~ ext) | url }}">Feed-forward <small>65%</small></a>
+          <span class="mlx-pipe__add">+</span>
+        </div>
+        <span class="mlx-pipe__node">Head</span>
       </div>
-      <dl class="mlx-facts">
-        <div><dt>Lineages</dt><dd>13</dd></div>
-        <div><dt>Runs on</dt><dd>a laptop CPU</dd></div>
-        <div><dt>Per experiment</dt><dd>&lt; 10 min</dd></div>
-      </dl>
     </div>
+    <div class="mlx-stats">
+      <span>Feed-forward share of params <b>65%</b></span>
+      <span>Val loss, no residual <b>1.74 &rarr; 3.35</b></span>
+      <span>Each experiment, laptop CPU <b>&lt; 10 min</b></span>
+    </div>
+    <div class="mlx-actions">
+      <a class="mlx-btn mlx-btn--primary" href="{{ ('01-anatomy/' ~ ext) | url }}">Start with the anatomy</a>
+      <a class="mlx-btn" href="{{ ('05-channel-mixing/' ~ ext) | url }}">Read chapter 5: sigmoid to MoE</a>
+    </div>
+  </section>
 
-    <figure class="mlx-stack" aria-label="The blocks of a modern Transformer, each linked to its lineage">
-      <figcaption>decoder-only LM &middot; shapes (B, T, d)</figcaption>
-      <div class="mlx-stack__row"><span class="mlx-stack__name">Output head</span><span class="mlx-stack__note">(B, T, vocab)</span></div>
-      <div class="mlx-stack__block">
-        <span class="mlx-stack__label">&times; N blocks</span>
-        <a class="mlx-stack__row mlx-stack__row--hot" href="{{ ('05-channel-mixing/' ~ ext) | url }}"><span class="mlx-stack__name">Feed-forward</span><span class="mlx-stack__note mlx-red">65% of params</span></a>
-        <div class="mlx-stack__row mlx-stack__row--thin"><span class="mlx-stack__name">RMSNorm</span><span class="mlx-stack__note">0.1%</span></div>
-        <div class="mlx-stack__row mlx-stack__row--accent"><span class="mlx-stack__name">Attention</span><span class="mlx-stack__note">33% of params</span></div>
-        <div class="mlx-stack__row mlx-stack__row--thin"><span class="mlx-stack__name">RMSNorm</span><span class="mlx-stack__note">+ residual</span></div>
-      </div>
-      <div class="mlx-stack__row"><span class="mlx-stack__name">Position (RoPE)</span><span class="mlx-stack__note">inside attention</span></div>
-      <div class="mlx-stack__row"><span class="mlx-stack__name">Token embedding</span><span class="mlx-stack__note">(B, T) &rarr; (B, T, d)</span></div>
-      <p class="mlx-stack__margin mlx-red">remove the residual path and validation loss goes from 1.74 to 3.35</p>
-    </figure>
-  </div>
-</section>
-
-<section class="mlx-section" id="lineages">
-  <div class="mlx-section__inner">
-    <header class="mlx-section__head">
-      <p class="mlx-eyebrow">Part II &middot; Architecture</p>
-      <h2>Six blocks, six lineages</h2>
-      <p>Each chapter follows one block from its first form to today's, with vision and language as two branches that merge at the Transformer.</p>
-    </header>
-    <div class="mlx-grid">{% for c in architecture %}{{ card(c) }}{% endfor %}</div>
-
-    <header class="mlx-section__head">
-      <p class="mlx-eyebrow">Part III &middot; Training recipe</p>
-      <h2>How the weights get there</h2>
-    </header>
-    <div class="mlx-grid mlx-grid--4">{% for c in training %}{{ card(c) }}{% endfor %}</div>
-
-    <header class="mlx-section__head">
-      <p class="mlx-eyebrow">Part IV &middot; Beyond the block</p>
-      <h2>Breakthroughs that are not one block</h2>
-    </header>
-    <div class="mlx-grid">{% for c in beyond %}{{ card(c) }}{% endfor %}</div>
-  </div>
-</section>
-
-<section class="mlx-section mlx-section--method">
-  <div class="mlx-section__inner">
-    <header class="mlx-section__head">
-      <p class="mlx-eyebrow">Inside every chapter</p>
-      <h2>Read it, run it, then argue with it</h2>
-    </header>
-    <div class="mlx-method">
-      <div><h3>Diagram</h3><p>Every architecture drawn with its tensor shapes, so the code has a map.</p></div>
-      <div><h3>Code</h3><p>30 to 100 lines of PyTorch, laid out to match the diagram block by block.</p></div>
-      <div><h3>Experiment</h3><p>A small run on TinyShakespeare that reproduces the effect, with and without the idea.</p></div>
-      <div><h3>Post-mortem</h3><p>What the paper claimed, what later work showed, and how sure we are:
-        <span class="mlx-tag mlx-tag--established">established</span>
-        <span class="mlx-tag mlx-tag--likely">likely</span>
-        <span class="mlx-tag mlx-tag--speculative">speculative</span></p></div>
+  <div class="mlx-finder" id="lineages">
+    <input type="search" id="mlx-search" class="mlx-search" placeholder="Search lineages" aria-label="Search lineages">
+    <div class="mlx-filters" role="group" aria-label="Filter lineages by part">
+      <button class="mlx-chip" data-filter="all" aria-pressed="true">All <span>13</span></button>
+      {% for p in parts %}<button class="mlx-chip" data-filter="{{ p.id }}" aria-pressed="false">{{ p.label }} <span>{{ p.cards | length }}</span></button>
+      {% endfor %}
     </div>
   </div>
-</section>
+  <p class="mlx-none" id="mlx-none" hidden>No lineage matches that search.</p>
+
+  {% for p in parts %}
+  <section class="mlx-shelf" id="{{ p.id }}" data-cat="{{ p.id }}">
+    <div class="mlx-shelf__label">
+      <h2>{{ p.title }}</h2>
+      <span class="mlx-eyebrow">Part {{ ["II", "III", "IV"][loop.index0] }} &middot; {{ p.cards | length }} lineages</span>
+    </div>
+    <p class="mlx-shelf__desc">{{ p.desc }}</p>
+    <div class="mlx-grid">{% for c in p.cards %}{{ card(c, p.id) }}{% endfor %}</div>
+  </section>
+  {% endfor %}
+
+  <section class="mlx-explain">
+    <section><span class="mlx-eyebrow">Diagram</span><p>Every architecture drawn with its tensor shapes, so the code has a map.</p></section>
+    <section><span class="mlx-eyebrow">Code</span><p>30 to 100 lines of PyTorch, laid out to match the diagram block by block.</p></section>
+    <section><span class="mlx-eyebrow">Experiment</span><p>A small TinyShakespeare run that reproduces the effect, with and without the idea.</p></section>
+    <section><span class="mlx-eyebrow">Post-mortem</span><p>What the paper claimed, what later work showed, and how sure we are:
+      <span class="mlx-tag mlx-tag--established">established</span>
+      <span class="mlx-tag mlx-tag--likely">likely</span>
+      <span class="mlx-tag mlx-tag--speculative">speculative</span></p></section>
+  </section>
+</div>
 {% endblock %}
