@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" font-family="Inter, Helvetica, Arial, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
+<rect width="780" height="500" fill="white"/>
+<text x="130" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">1. MLP (2012-2020)</text>
+<text x="130" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">ReLU, then GELU</text>
+<rect x="40.0" y="380" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="130" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
+<text x="130" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
+<line x1="130" y1="380" x2="130" y2="352" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="40.0" y="308" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="130" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear up</text>
+<text x="130" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 4d</text>
+<line x1="130" y1="308" x2="130" y2="280" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="40.0" y="236" width="180" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
+<text x="130" y="256" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Activation</text>
+<text x="130" y="272" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">ReLU or GELU</text>
+<line x1="130" y1="236" x2="130" y2="208" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="40.0" y="164" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="130" y="184" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear down</text>
+<text x="130" y="200" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">4d to d</text>
+<text x="130" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: 8d²</text>
+<text x="390" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">2. SwiGLU (2020-)</text>
+<text x="390" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">a gate decides what passes</text>
+<rect x="290.0" y="380" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="390" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
+<text x="390" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
+<path d="M390 380 V368 H330 V352" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<path d="M390 368 H450 V352" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="278.0" y="308" width="104" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="330" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear gate</text>
+<text x="330" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 8d/3</text>
+<rect x="398.0" y="308" width="104" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="450" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear up</text>
+<text x="450" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 8d/3</text>
+<line x1="330" y1="308" x2="330" y2="280" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="278.0" y="236" width="104" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
+<text x="330" y="256" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">SiLU</text>
+<text x="330" y="272" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">Swish</text>
+<path d="M330 236 V196 H380" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<path d="M450 308 V196 H400" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<circle cx="390" cy="196" r="10" fill="white" stroke="#9ca3af"/>
+<text x="390" y="200.5" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">×</text>
+<line x1="390" y1="186" x2="390" y2="164" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="290.0" y="120" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="390" y="140" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear down</text>
+<text x="390" y="156" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">8d/3 to d</text>
+<text x="390" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: 8d² (same budget)</text>
+<text x="640" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">3. Mixture of Experts (2017-)</text>
+<text x="640" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">many FFNs, each token uses k</text>
+<rect x="540.0" y="380" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="640" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
+<text x="640" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
+<line x1="640" y1="380" x2="640" y2="352" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="528.0" y="308" width="224" height="44" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.75"/>
+<text x="640" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Router</text>
+<text x="640" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">softmax over E experts, keep top-k</text>
+<rect x="537" y="228" width="44" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
+<text x="559" y="252" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">E1</text>
+<line x1="559" y1="308" x2="559" y2="272" stroke="#2563eb" stroke-width="1.25" stroke-dasharray="0" marker-end="url(#a)"/>
+<path d="M559 228 V206 H630" fill="none" stroke="#2563eb" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="591" y="228" width="44" height="40" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="613" y="252" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">E2</text>
+<line x1="613" y1="308" x2="613" y2="272" stroke="#9ca3af" stroke-width="1.25" stroke-dasharray="3 3" marker-end="url(#a)"/>
+<rect x="645" y="228" width="44" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
+<text x="667" y="252" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">E3</text>
+<line x1="667" y1="308" x2="667" y2="272" stroke="#2563eb" stroke-width="1.25" stroke-dasharray="0" marker-end="url(#a)"/>
+<path d="M667 228 V206 H650" fill="none" stroke="#2563eb" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="699" y="228" width="44" height="40" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="721" y="252" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">E4</text>
+<line x1="721" y1="308" x2="721" y2="272" stroke="#9ca3af" stroke-width="1.25" stroke-dasharray="3 3" marker-end="url(#a)"/>
+<text x="640" y="70" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">each expert is its own SwiGLU FFN</text>
+<circle cx="640" cy="196" r="10" fill="white" stroke="#9ca3af"/>
+<text x="640" y="200.5" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Σ</text>
+<line x1="640" y1="186" x2="640" y2="164" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
+<rect x="540.0" y="120" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
+<text x="640" y="140" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Weighted sum</text>
+<text x="640" y="156" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">router weights × expert outputs</text>
+<text x="640" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: E×8d², compute: k×8d²</text>
+<text x="390" y="476" font-size="12" font-weight="400" fill="#6b7280" text-anchor="middle">All three map each token (T, d) to (T, d) independently: the feed-forward layer never mixes tokens.</text>
+</svg>

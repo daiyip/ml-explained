@@ -1,0 +1,52 @@
+site_name: ML Explained
+site_description: "ML Explained: the modern Transformer, one building block at a time."
+repo_url: https://github.com/daiyip/ml-explained
+docs_dir: chapters
+
+theme:
+  name: material
+  custom_dir: overrides
+  font: false
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+
+extra_css:
+  - assets/extra.css
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js
+  - assets/extra.js
+  - assets/tree.js
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+
+markdown_extensions:
+  - tables
+  - admonition
+  - attr_list
+
+nav:
+  - Home: index.md
+  - "Part I · Anatomy":
+      - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
+  - "Part II · Architecture":
+      - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb
