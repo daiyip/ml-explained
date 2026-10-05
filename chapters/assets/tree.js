@@ -94,7 +94,7 @@
       { key: "loss-clip", kind: "merged", from: [["loss-lang", 3], ["loss-vis", 2]], steps: [
         { t: "contrastive (CLIP)", y: 2021, m: 1, n: "Match images with their captions; one shared image-text space." } ] } ] },
 
-    { part: "training", title: "Optimizer", ch: 9, branches: [
+    { part: "training", title: "Optimizer", ch: 9, ready: "09-optimizer/", branches: [
       { key: "opt", kind: "main", steps: [
         { t: "SGD + momentum", y: null, n: "One learning rate for every parameter." },
         { t: "AdaGrad", y: 2011, n: "A per-parameter step size from the history of squared gradients." },
@@ -104,7 +104,7 @@
         { t: "Lion", y: 2023, n: "A sign-based update found by program search; less memory." },
         { t: "Muon", y: 2024, n: "Orthogonalized momentum updates for matrix weights." } ] } ] },
 
-    { part: "training", title: "Learning-rate schedule", ch: 10, branches: [
+    { part: "training", title: "Learning-rate schedule", ch: 10, ready: "10-lr-schedule/", branches: [
       { key: "lr", kind: "main", steps: [
         { t: "step decay", y: 2012, n: "Divide the learning rate by 10 when progress stalls." },
         { t: "warmup + cosine", y: 2017, m: 1, n: "Ramp up for stability, then decay smoothly to near zero." },

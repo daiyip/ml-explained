@@ -59,3 +59,5 @@ nav:
       - "7. Residual connections": 07-residual/index.ipynb
   - "Part III · Training recipe":
       - "8. Objective and loss": 08-objective/index.ipynb
+      - "9. Optimizer": 09-optimizer/index.ipynb
+      - "10. Learning-rate schedule": 10-lr-schedule/index.ipynb
