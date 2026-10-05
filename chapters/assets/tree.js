@@ -6,7 +6,7 @@
   // y: first year (null = before 2010), m: major step, n: one-line note.
   // A branch's `from` lists ["branchKey", stepIndex] sources that feed its first step.
   var TREE = [
-    { part: "architecture", title: "Tokens and embeddings", ch: 2, branches: [
+    { part: "architecture", title: "Tokens and embeddings", ch: 2, ready: "02-tokens/", branches: [
       { key: "tok-lang", kind: "language", steps: [
         { t: "one-hot words", y: null, n: "Each word is its own dimension, so no two words are similar." },
         { t: "word2vec", y: 2013, m: 1, n: "Dense word vectors learned from context; similar words land close together." },
@@ -18,7 +18,7 @@
       { key: "tok-mm", kind: "merged", from: [["tok-lang", 3], ["tok-vis", 1]], steps: [
         { t: "multimodal tokens", y: 2022, n: "Image patches and text tokens share one sequence in one model." } ] } ] },
 
-    { part: "architecture", title: "Position encoding", ch: 3, branches: [
+    { part: "architecture", title: "Position encoding", ch: 3, ready: "03-position/", branches: [
       { key: "pos-imp", kind: "implicit", steps: [
         { t: "implicit order", y: null, n: "Convolution windows and recurrence gave order for free." } ] },
       { key: "pos-exp", kind: "explicit", from: [["pos-imp", 0]], steps: [
@@ -29,7 +29,7 @@
         { t: "ALiBi", y: 2021.5, n: "A linear distance penalty on attention scores; extrapolates to longer inputs." },
         { t: "RoPE scaling", y: 2023, n: "Stretch RoPE's frequencies to extend the context window (YaRN and others)." } ] } ] },
 
-    { part: "architecture", title: "Token mixing", ch: 4, branches: [
+    { part: "architecture", title: "Token mixing", ch: 4, ready: "04-token-mixing/", branches: [
       { key: "mix-vis", kind: "vision", steps: [
         { t: "AlexNet convolution", y: 2012, m: 1, n: "A deep CNN trained on GPUs wins ImageNet by a wide margin." },
         { t: "VGG, Inception", y: 2014, n: "Deeper stacks of small filters, and multi-branch modules." } ] },

@@ -375,7 +375,9 @@ body { background: var(--mlx-paper); }
 .mlx-steps__tab[aria-selected="true"] { background: var(--mlx-panel); color: var(--mlx-ink); border-top: 3px solid var(--mlx-accent); border-bottom: 1px solid var(--mlx-panel); }
 .mlx-steps__n { font-family: var(--mlx-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .mlx-steps__title { font-size: 0.8rem; font-weight: 600; line-height: 1.25; }
-.mlx-steps__lvl { position: absolute; top: 0.5rem; right: 0.6rem; font-family: var(--mlx-mono); font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.35rem; border-radius: 0.6rem; border: 1px solid currentColor; }
+.mlx-steps__bar:has(> :nth-child(5)) .mlx-steps__title { font-size: 0.72rem; }
+.mlx-steps__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 0.4rem; width: 100%; }
+.mlx-steps__lvl { font-family: var(--mlx-mono); font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.35rem; border-radius: 0.6rem; border: 1px solid currentColor; }
 .mlx-steps__lvl--major { color: var(--mlx-accent); }
 .mlx-steps__lvl--minor { color: var(--mlx-ink-soft); }
 .mlx-steps__panel { padding-top: 0.4rem; }

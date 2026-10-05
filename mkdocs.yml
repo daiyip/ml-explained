@@ -51,4 +51,7 @@ nav:
   - "Part I · Anatomy":
       - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
   - "Part II · Architecture":
-      - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb
+      - "2. Tokens and embeddings": 02-tokens/index.ipynb
+      - "3. Position encoding": 03-position/index.ipynb
+      - "4. Token mixing": 04-token-mixing/index.ipynb
+      - "5. Channel mixing": 05-channel-mixing/index.ipynb

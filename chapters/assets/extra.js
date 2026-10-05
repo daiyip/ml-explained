@@ -53,6 +53,12 @@
     var content = document.querySelector(".md-content");
     var h1 = content && content.querySelector(".md-typeset h1");
     if (!h1) return;
+    // Math in running text is written inside code spans so Markdown leaves its backslashes alone; unwrap it.
+    content.querySelectorAll(".md-typeset code").forEach(function (c) {
+      if (c.closest("pre")) return;
+      var t = c.textContent;
+      if (/^\\\([\s\S]+\\\)$/.test(t) || /^\$\$[\s\S]+\$\$$/.test(t)) c.replaceWith(document.createTextNode(t));
+    });
     // Render the key equations; MathML output needs no extra stylesheet or fonts.
     if (window.renderMathInElement) {
       renderMathInElement(content, {
@@ -223,7 +229,7 @@
       tab.className = "mlx-steps__tab";
       tab.id = "mlx-tab-" + st.n;
       tab.setAttribute("role", "tab");
-      tab.innerHTML = '<span class="mlx-steps__n">Step ' + st.n + '</span><span class="mlx-steps__lvl mlx-steps__lvl--' + st.level + '">' + st.level + "</span>" +
+      tab.innerHTML = '<span class="mlx-steps__top"><span class="mlx-steps__n">Step ' + st.n + '</span><span class="mlx-steps__lvl mlx-steps__lvl--' + st.level + '">' + st.level + "</span></span>" +
         '<span class="mlx-steps__title"></span>';
       tab.querySelector(".mlx-steps__title").textContent = st.title;
       bar.append(tab);
