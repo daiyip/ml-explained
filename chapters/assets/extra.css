@@ -1,6 +1,6 @@
 /* Look shared with the Science Wonders notebook: cool paper, white panels, one blue accent,
    and a dark "bench" for anything you watch run. Spectral headings over IBM Plex. */
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Spectral:wght@500;600&display=swap");
 
 :root {
   --mlx-display: "Spectral", "Iowan Old Style", Georgia, serif;
@@ -412,12 +412,15 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-why--tabs > .mlx-why__card { margin-top: 0; }
 .md-typeset .mlx-why--tabs > .mlx-why__card > .mlx-why__n, .md-typeset .mlx-why--tabs > .mlx-why__card > h3 { display: none; }
 
-/* ---------- Brand: code wordmark, ml.explained() ---------- */
-.md-header .mlx-logo { display: inline-flex; align-items: baseline; color: var(--mlx-ink); text-decoration: none; line-height: 1;
-  font-family: var(--mlx-mono); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.01em; }
-.mlx-logo__ml { color: var(--mlx-accent); font-weight: 600; }
-.mlx-logo__call { color: var(--mlx-ink-soft); }
-.mlx-logo__cursor { display: inline-block; width: 0.5em; height: 0.12em; margin-left: 0.08em; background: var(--mlx-accent); transform: translateY(0.05em); }
+/* ---------- Brand: attention-arcs mark + stacked name ---------- */
+.md-header .mlx-logo { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--mlx-ink); text-decoration: none; line-height: 1; }
+.mlx-logo__mark { width: 2.4rem; height: auto; flex: none; }
+.mlx-logo__arcs { stroke: var(--mlx-accent); }
+.mlx-logo__tokens { fill: var(--mlx-ink-soft); }
+.mlx-logo__query { fill: var(--mlx-good); }
+.mlx-logo__text { display: grid; }
+.mlx-logo__name { font-family: var(--mlx-body); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+.mlx-logo__sub { font-family: var(--mlx-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mlx-ink-soft); margin-top: 0.22rem; }
 .md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; }
 .md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover,
 .md-typeset .mlx-kicker a.mlx-kicker__part:focus-visible, a.mlx-navpart:focus-visible { color: var(--mlx-accent); text-decoration: underline; text-underline-offset: 0.2em; }
@@ -478,7 +481,7 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   .mlx-panel-toggle--toc { display: inline-flex; }
   .mlx-hide-toc .md-sidebar--secondary { display: none; }
 }
-@media screen and (max-width: 30em) { .md-header .mlx-logo { font-size: 1.15rem; } }
+@media screen and (max-width: 30em) { .mlx-logo__mark { width: 2rem; } .mlx-logo__name { font-size: 0.9rem; } .mlx-logo__sub { font-size: 0.6rem; } }
 
 /* GitHub link in the header: just the mark, no repo stats */
 .md-header .mlx-gh { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; margin: 0 0.3rem 0 0.6rem;

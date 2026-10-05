@@ -38,7 +38,7 @@ ATOM = {"a": "http://www.w3.org/2005/Atom"}
 
 
 def get(url: str, retries: int = 5) -> bytes | None:
-    headers = {"User-Agent": "ml-explained-cite-check"}
+    headers = {"User-Agent": "transformer-explained-cite-check"}
     if "semanticscholar" in url and os.environ.get("S2_API_KEY"):
         headers["x-api-key"] = os.environ["S2_API_KEY"]
     for attempt in range(retries):
