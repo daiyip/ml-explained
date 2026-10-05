@@ -414,3 +414,35 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; }
 .md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover,
 .md-typeset .mlx-kicker a.mlx-kicker__part:focus-visible, a.mlx-navpart:focus-visible { color: var(--mlx-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Code highlighting: a calm palette in the site's lab-blue family (strings softened from the default red) */
+body[data-md-color-scheme] .jupyter-wrapper {
+  --jp-mirror-editor-keyword-color: #2647c9;
+  --jp-mirror-editor-def-color: #1f3a8a;
+  --jp-mirror-editor-builtin-color: #2c7a6a;
+  --jp-mirror-editor-number-color: #2c7a6a;
+  --jp-mirror-editor-atom-color: #2c7a6a;
+  --jp-mirror-editor-string-color: #9a6236;
+  --jp-mirror-editor-operator-color: #6b6f86;
+  --jp-mirror-editor-meta-color: #6c5bb0;
+  --jp-mirror-editor-comment-color: #7c8494;
+  --jp-mirror-editor-property-color: #3a4a7a;
+  --jp-mirror-editor-punctuation-color: #5a6170;
+  --jp-mirror-editor-variable-color: #1d2230;
+  --jp-mirror-editor-qualifier-color: #5a6170;
+}
+body[data-md-color-scheme="slate"] .jupyter-wrapper {
+  --jp-mirror-editor-keyword-color: #8fa6ff;
+  --jp-mirror-editor-def-color: #b7c5ff;
+  --jp-mirror-editor-builtin-color: #7cc2b1;
+  --jp-mirror-editor-number-color: #7cc2b1;
+  --jp-mirror-editor-atom-color: #7cc2b1;
+  --jp-mirror-editor-string-color: #d6ad84;
+  --jp-mirror-editor-operator-color: #a3a9bb;
+  --jp-mirror-editor-meta-color: #b9a7f0;
+  --jp-mirror-editor-comment-color: #7f8797;
+  --jp-mirror-editor-property-color: #aab8e6;
+  --jp-mirror-editor-punctuation-color: #a3a9bb;
+  --jp-mirror-editor-variable-color: #dfe3ec;
+  --jp-mirror-editor-qualifier-color: #a3a9bb;
+}
