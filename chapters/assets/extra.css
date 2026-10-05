@@ -477,3 +477,10 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   .mlx-hide-toc .md-sidebar--secondary { display: none; }
 }
 @media screen and (max-width: 30em) { .md-header .mlx-logo { font-size: 1.15rem; } }
+
+/* GitHub link in the header: just the mark, no repo stats */
+.md-header .mlx-gh { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; margin: 0 0.3rem 0 0.6rem;
+  border-radius: 0.4rem; color: var(--mlx-ink-soft); }
+.md-header .mlx-gh svg { width: 1.35rem; height: 1.35rem; fill: currentColor; }
+.md-header .mlx-gh:hover { color: var(--mlx-accent); background: color-mix(in srgb, var(--mlx-accent) 10%, transparent); }
+@media screen and (max-width: 59.984375em) { .md-header .mlx-gh { display: none; } }
