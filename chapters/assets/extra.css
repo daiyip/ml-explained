@@ -410,5 +410,6 @@ body { background: var(--mlx-paper); }
 .mlx-logo__top { font-family: var(--mlx-mono); font-size: 0.5rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mlx-ink-soft); }
 .mlx-logo__main { font-family: var(--mlx-display); font-size: 1.12rem; font-weight: 600; letter-spacing: -0.005em; }
 .md-header .mlx-logo:hover .mlx-logo__main { color: var(--mlx-accent); }
-.md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
-.md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover { color: var(--mlx-accent); border-bottom-style: solid; }
+.md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; }
+.md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover,
+.md-typeset .mlx-kicker a.mlx-kicker__part:focus-visible, a.mlx-navpart:focus-visible { color: var(--mlx-accent); text-decoration: underline; text-underline-offset: 0.2em; }
