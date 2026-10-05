@@ -19,11 +19,8 @@
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
-          {#- Brand: an exploded block stack and a two-line wordmark. -#}
-          <a class="mlx-logo" href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" aria-label="{{ config.site_name }}, home">
-            <svg class="mlx-logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" class="mlx-logo__tile"/><rect x="7" y="7.5" width="18" height="4.5" rx="1.6" class="mlx-logo__bar"/><rect x="10.5" y="14" width="18" height="4.5" rx="1.6" class="mlx-logo__bar mlx-logo__bar--out"/><rect x="7" y="20.5" width="18" height="4.5" rx="1.6" class="mlx-logo__bar"/></svg>
-            <span class="mlx-logo__word"><span class="mlx-logo__top">Machine Learning</span><span class="mlx-logo__main">Explained</span></span>
-          </a>
+          {#- Brand: the code wordmark ml.explained(). -#}
+          <a class="mlx-logo" href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" aria-label="{{ config.site_name }}, home"><span class="mlx-logo__ml">ml</span>.explained<span class="mlx-logo__call">()</span><span class="mlx-logo__cursor" aria-hidden="true"></span></a>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
