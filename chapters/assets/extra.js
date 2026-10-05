@@ -325,7 +325,44 @@
     });
   }
 
-  function init() { enhance(); finder(); textbook(); partLinks(); }
+  // Header buttons that fold away the left (chapters) and right (contents) panels on wide screens.
+  // The choice is remembered per browser.
+  function panels() {
+    var header = document.querySelector(".md-header__inner");
+    var search = header && header.querySelector(".md-search");
+    if (!header) return;
+    var root = document.documentElement;
+    var ICON = {
+      nav: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16"/></svg>',
+      toc: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M15 4v16"/></svg>',
+    };
+    [["nav", ".md-sidebar--primary", "chapter list"], ["toc", ".md-sidebar--secondary", "table of contents"]].forEach(function (p) {
+      var key = p[0], side = document.querySelector(p[1]);
+      if (!side || !side.querySelector(".md-nav__item, .md-nav__link")) return;
+      var cls = "mlx-hide-" + key, stored = null;
+      try { stored = localStorage.getItem("mlx-" + cls); } catch (e) {}
+      if (stored === "1") root.classList.add(cls);
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "mlx-panel-toggle mlx-panel-toggle--" + key;
+      b.innerHTML = ICON[key];
+      function sync() {
+        var hidden = root.classList.contains(cls);
+        b.setAttribute("aria-pressed", String(!hidden));
+        b.title = (hidden ? "Show the " : "Hide the ") + p[2];
+        b.setAttribute("aria-label", b.title);
+      }
+      b.addEventListener("click", function () {
+        root.classList.toggle(cls);
+        try { localStorage.setItem("mlx-" + cls, root.classList.contains(cls) ? "1" : "0"); } catch (e) {}
+        sync();
+      });
+      sync();
+      header.insertBefore(b, search || null);
+    });
+  }
+
+  function init() { enhance(); finder(); textbook(); partLinks(); panels(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
