@@ -338,7 +338,8 @@
     };
     [["nav", ".md-sidebar--primary", "chapter list"], ["toc", ".md-sidebar--secondary", "table of contents"]].forEach(function (p) {
       var key = p[0], side = document.querySelector(p[1]);
-      if (!side || !side.querySelector(".md-nav__item, .md-nav__link")) return;
+      // Skip panels the page hides (the home page has neither), so no button does nothing.
+      if (!side || side.hidden || !side.querySelector(".md-nav__item, .md-nav__link")) return;
       var cls = "mlx-hide-" + key, stored = null;
       try { stored = localStorage.getItem("mlx-" + cls); } catch (e) {}
       if (stored === "1") root.classList.add(cls);
