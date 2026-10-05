@@ -506,3 +506,12 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   .md-typeset .mlx-fork__sides { grid-template-columns: 1fr; }
   .md-typeset .mlx-fork__vs { justify-self: center; }
 }
+
+/* Roomier header: more space above and below the logo */
+.md-header__inner { padding-block: 0.5rem; }
+.md-header__title { margin-left: 0.6rem; }
+@media screen and (min-width: 76.25em) {
+  .md-sidebar { top: 3.4rem; }
+  .md-sidebar--primary, .md-sidebar--secondary { height: calc(100vh - 3.4rem); }
+}
+html { scroll-padding-top: 3.8rem; }
