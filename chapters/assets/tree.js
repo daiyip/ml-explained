@@ -125,7 +125,7 @@
         { t: "Chinchilla", y: 2022, n: "For a fixed budget, train smaller models on far more tokens." },
         { t: "emergence", y: 2022.5, n: "Some abilities seem to appear suddenly with scale; the claim is debated." } ] } ] },
 
-    { part: "beyond", title: "Post-training", ch: 13, branches: [
+    { part: "beyond", title: "Post-training", ch: 13, ready: "13-post-training/", branches: [
       { key: "post", kind: "main", steps: [
         { t: "instruction tuning", y: 2021, n: "Fine-tune on many tasks phrased as instructions (FLAN, T0)." },
         { t: "RLHF", y: 2022, m: 1, n: "Train a reward model on human preferences, then optimize against it." },

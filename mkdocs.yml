@@ -64,4 +64,5 @@ nav:
       - "11. Initialization": 11-initialization/index.ipynb
   - "Part IV · Beyond the block":
       - "12. Scale": 12-scale/index.ipynb
+      - "13. Post-training": 13-post-training/index.ipynb
       - "14. Inference and use": 14-inference/index.ipynb
