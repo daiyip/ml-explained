@@ -409,7 +409,7 @@ body { background: var(--mlx-paper); }
 
 /* ---------- Brand: code wordmark, ml.explained() ---------- */
 .md-header .mlx-logo { display: inline-flex; align-items: baseline; color: var(--mlx-ink); text-decoration: none; line-height: 1;
-  font-family: var(--mlx-mono); font-size: 1.3rem; font-weight: 500; letter-spacing: -0.01em; }
+  font-family: var(--mlx-mono); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.01em; }
 .mlx-logo__ml { color: var(--mlx-accent); font-weight: 600; }
 .mlx-logo__call { color: var(--mlx-ink-soft); }
 .mlx-logo__cursor { display: inline-block; width: 0.5em; height: 0.12em; margin-left: 0.08em; background: var(--mlx-accent); transform: translateY(0.05em); }
@@ -476,3 +476,4 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   .mlx-panel-toggle--toc { display: inline-flex; }
   .mlx-hide-toc .md-sidebar--secondary { display: none; }
 }
+@media screen and (max-width: 30em) { .md-header .mlx-logo { font-size: 1.15rem; } }
