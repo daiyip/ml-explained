@@ -56,3 +56,4 @@ nav:
       - "4. Token mixing": 04-token-mixing/index.ipynb
       - "5. Channel mixing": 05-channel-mixing/index.ipynb
       - "6. Normalization": 06-normalization/index.ipynb
+      - "7. Residual connections": 07-residual/index.ipynb

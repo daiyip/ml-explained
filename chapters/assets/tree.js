@@ -72,7 +72,7 @@
         { t: "pre-norm", y: 2020, n: "Normalize before each sub-layer instead of after; deep stacks train stably." },
         { t: "QK-norm", y: 2023, n: "Normalize queries and keys to stop attention logits from blowing up." } ] } ] },
 
-    { part: "architecture", title: "Residual connections", ch: 7, branches: [
+    { part: "architecture", title: "Residual connections", ch: 7, ready: "07-residual/", branches: [
       { key: "res", kind: "main", steps: [
         { t: "highway networks", y: 2015, n: "Gated skip connections let very deep networks train." },
         { t: "ResNet", y: 2015.6, m: 1, n: "Plain identity shortcuts, x + f(x): 152 layers deep wins ImageNet." },

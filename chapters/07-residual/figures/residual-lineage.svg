@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="res-fig" viewBox="0 0 960 600" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif">
+<style> .res-fig .t{fill:var(--mlx-ink,#131c27)} .res-fig .q{fill:var(--mlx-ink-soft,#4a5868)} .res-fig .b{fill:var(--mlx-panel,#fff);stroke:var(--mlx-ink-soft,#4a5868);stroke-opacity:.45;stroke-width:1.25} .res-fig .e,.res-fig .e1,.res-fig .e2,.res-fig .e2w,.res-fig .e3,.res-fig .stream{fill:none;stroke-width:1.5} .res-fig .e{stroke:var(--mlx-ink-soft,#4a5868)} .res-fig .e1{stroke:var(--mlx-accent,#2647c9)} .res-fig .e2,.res-fig .e2w{stroke:var(--mlx-good,#1f8a5b)} .res-fig .e2w{stroke-width:3} .res-fig .e3{stroke:var(--mlx-warn,#b5562b)} .res-fig .stream{stroke:var(--mlx-warn,#b5562b);stroke-width:5;stroke-opacity:.55} .res-fig .ah{fill:var(--mlx-ink-soft,#4a5868)} .res-fig .sep{stroke:var(--mlx-rule,#d3dae3);stroke-dasharray:2 5} .res-fig .n1,.res-fig .n2,.res-fig .n3{stroke-width:2} .res-fig .n1{fill:rgba(38,71,201,.08);fill:color-mix(in srgb,var(--mlx-accent,#2647c9) 12%,transparent);stroke:var(--mlx-accent,#2647c9)} .res-fig .n2{fill:rgba(31,138,91,.08);fill:color-mix(in srgb,var(--mlx-good,#1f8a5b) 14%,transparent);stroke:var(--mlx-good,#1f8a5b)} .res-fig .n3{fill:rgba(181,86,43,.08);fill:color-mix(in srgb,var(--mlx-warn,#b5562b) 14%,transparent);stroke:var(--mlx-warn,#b5562b)} .res-fig .tag1{fill:var(--mlx-accent,#2647c9)} .res-fig .tag2{fill:var(--mlx-good,#1f8a5b)} .res-fig .tag3{fill:var(--mlx-warn,#b5562b)} .res-fig .tagt1,.res-fig .tagt2,.res-fig .tagt3{fill:var(--mlx-paper,#fff)} .res-fig .cl1{fill:var(--mlx-accent,#2647c9)} .res-fig .cl2{fill:var(--mlx-good,#1f8a5b)} .res-fig .cl3{fill:var(--mlx-warn,#b5562b)}
+</style>
+<defs><marker id="res-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
+<text x="160" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">1. Highway network</text>
+<text x="160" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">2015: a gated bypass</text>
+<g transform="translate(0,40)">
+<rect x="60.0" y="452" width="200" height="48" rx="8" class="b"/>
+<text x="160" y="473" class="t" font-size="16.1" font-weight="600" text-anchor="middle">x</text>
+<text x="160" y="490" class="q" font-size="13.8" font-weight="400" text-anchor="middle">input to the layer</text>
+<path d="M140 452 V436 H102 V404" class="e" marker-end="url(#res-a)"/>
+<path d="M180 452 V436 H190 V404" class="e" marker-end="url(#res-a)"/>
+<rect x="54.0" y="356" width="96" height="48" rx="8" class="b"/>
+<text x="102" y="377" class="t" font-size="16.1" font-weight="600" text-anchor="middle">H(x)</text>
+<text x="102" y="394" class="q" font-size="13.8" font-weight="400" text-anchor="middle">the layer</text>
+<rect x="154.0" y="356" width="72" height="48" rx="8" class="n1"/>
+<text x="190" y="377" class="t" font-size="16.1" font-weight="600" text-anchor="middle">gate T</text>
+<text x="190" y="394" class="q" font-size="13.8" font-weight="400" text-anchor="middle">σ(Wx+b)</text>
+<path d="M220 452 V444 H260 V250" class="e1"/>
+<path d="M260 250 V234 H174" class="e1" marker-end="url(#res-a)"/>
+<text x="256" y="300" class="cl1" font-size="12.6" font-weight="600" text-anchor="end">carry</text>
+<text x="256" y="315" class="cl1" font-size="12.6" font-weight="400" text-anchor="end">(1−T)·x</text>
+<path d="M102 356 V234 H146" class="e" marker-end="url(#res-a)"/>
+<text x="96" y="300" class="q" font-size="12.6" font-weight="400" text-anchor="end">T·H(x)</text>
+<path d="M190 356 V272 H160 V248" class="e1" marker-end="url(#res-a)"/>
+<text x="196" y="300" class="cl1" font-size="12.6" font-weight="600" text-anchor="start">T</text>
+<circle cx="160" cy="234" r="12" class="n1"/>
+<text x="160" y="239" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<path d="M160 222 V190" class="e" marker-end="url(#res-a)"/>
+<rect x="60.0" y="142" width="200" height="34" rx="8" class="b"/>
+<text x="160" y="164" class="t" font-size="16.1" font-weight="600" text-anchor="middle">y = T·H(x) + (1−T)·x</text>
+<path d="M160 142 V104" class="e" marker-end="url(#res-a)"/>
+<text x="160" y="96" class="q" font-size="13.8" font-weight="400" text-anchor="middle">to the next layer</text>
+<text x="160" y="524" class="q" font-size="14.4" font-weight="400" text-anchor="middle">gate closed (T≈0): y ≈ x</text>
+<text x="160" y="542" class="q" font-size="14.4" font-weight="400" text-anchor="middle">extra weights for every gate</text>
+</g>
+<text x="480" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">2. ResNet</text>
+<text x="480" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">2015: an identity shortcut</text>
+<g transform="translate(0,40)">
+<rect x="380.0" y="452" width="200" height="48" rx="8" class="b"/>
+<text x="480" y="473" class="t" font-size="16.1" font-weight="600" text-anchor="middle">x</text>
+<text x="480" y="490" class="q" font-size="13.8" font-weight="400" text-anchor="middle">input to the block</text>
+<path d="M450 452 V420" class="e" marker-end="url(#res-a)"/>
+<rect x="380.0" y="384" width="140" height="34" rx="8" class="b"/>
+<text x="450" y="406" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear + BN</text>
+<path d="M450 384 V358" class="e" marker-end="url(#res-a)"/>
+<rect x="380.0" y="324" width="140" height="34" rx="8" class="b"/>
+<text x="450" y="346" class="t" font-size="16.1" font-weight="600" text-anchor="middle">ReLU</text>
+<path d="M450 324 V298" class="e" marker-end="url(#res-a)"/>
+<rect x="380.0" y="264" width="140" height="34" rx="8" class="b"/>
+<text x="450" y="286" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear + BN</text>
+<path d="M450 264 V234 H466" class="e" marker-end="url(#res-a)"/>
+<text x="442" y="252" class="q" font-size="12.6" font-weight="400" text-anchor="end">F(x)</text>
+<path d="M540 452 V444 H565 V234 H506" class="e2w"/>
+<path d="M508 234 H494" class="e2" marker-end="url(#res-a)"/>
+<text x="573" y="330" class="cl2" font-size="12.6" font-weight="600" text-anchor="start">identity</text>
+<circle cx="480" cy="234" r="12" class="n2"/>
+<text x="480" y="239" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<path d="M480 222 V190" class="e" marker-end="url(#res-a)"/>
+<rect x="380.0" y="142" width="200" height="48" rx="8" class="b"/>
+<text x="480" y="163" class="t" font-size="16.1" font-weight="600" text-anchor="middle">ReLU</text>
+<text x="480" y="180" class="q" font-size="13.8" font-weight="400" text-anchor="middle">y = ReLU(x + F(x))</text>
+<path d="M480 142 V104" class="e" marker-end="url(#res-a)"/>
+<text x="480" y="96" class="q" font-size="13.8" font-weight="400" text-anchor="middle">to the next block</text>
+<text x="480" y="524" class="q" font-size="14.4" font-weight="400" text-anchor="middle">F only learns a correction to x</text>
+<text x="480" y="542" class="q" font-size="14.4" font-weight="400" text-anchor="middle">gradient always has a path of 1</text>
+</g>
+<text x="800" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">3. Residual stream</text>
+<text x="800" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">2019-21: pre-norm Transformer</text>
+<g transform="translate(0,40)">
+<rect x="670.0" y="466" width="120" height="34" rx="8" class="b"/>
+<text x="730" y="488" class="t" font-size="16.1" font-weight="600" text-anchor="middle">embed tokens</text>
+<path d="M730 466 V140" class="stream"/>
+<text transform="rotate(-90 714 300)" x="714" y="300" class="cl3" font-size="13.2" font-weight="600" text-anchor="middle">residual stream</text>
+<path d="M730 414 H777" class="e" marker-end="url(#res-a)"/>
+<text x="750" y="409" class="q" font-size="12.1" font-weight="400" text-anchor="start">read</text>
+<rect x="781.0" y="370" width="128" height="48" rx="8" class="n3"/>
+<text x="845" y="391" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Attention</text>
+<text x="845" y="408" class="q" font-size="13.8" font-weight="400" text-anchor="middle">on norm(x)</text>
+<path d="M845 370 V340 H744" class="e3" marker-end="url(#res-a)"/>
+<text x="815" y="334" class="cl3" font-size="12.1" font-weight="400" text-anchor="middle">write</text>
+<circle cx="730" cy="340" r="12" class="n3"/>
+<text x="730" y="345" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<path d="M730 294 H777" class="e" marker-end="url(#res-a)"/>
+<text x="750" y="289" class="q" font-size="12.1" font-weight="400" text-anchor="start">read</text>
+<rect x="781.0" y="250" width="128" height="48" rx="8" class="n3"/>
+<text x="845" y="271" class="t" font-size="16.1" font-weight="600" text-anchor="middle">FFN</text>
+<text x="845" y="288" class="q" font-size="13.8" font-weight="400" text-anchor="middle">on norm(x)</text>
+<path d="M845 250 V220 H744" class="e3" marker-end="url(#res-a)"/>
+<text x="815" y="214" class="cl3" font-size="12.1" font-weight="400" text-anchor="middle">write</text>
+<circle cx="730" cy="220" r="12" class="n3"/>
+<text x="730" y="225" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<text x="845" y="442" class="q" font-size="13.8" font-weight="400" text-anchor="middle">× N blocks</text>
+<rect x="660.0" y="94" width="140" height="34" rx="8" class="b"/>
+<text x="730" y="116" class="t" font-size="16.1" font-weight="600" text-anchor="middle">norm + head</text>
+<path d="M730 142 V128" class="e3" marker-end="url(#res-a)"/>
+<text x="800" y="524" class="q" font-size="14.4" font-weight="400" text-anchor="middle">x ← x + f(norm(x)); x never normalized</text>
+<text x="800" y="542" class="q" font-size="14.4" font-weight="400" text-anchor="middle">every block adds to one shared vector</text>
+</g>
+<rect x="11.400000000000006" y="73" width="297.2" height="19" rx="9.5" class="tag1"/>
+<text x="160" y="87" class="tagt1" font-size="12.1" font-weight="600" text-anchor="middle">NEW: a learned gate carries x past the layer</text>
+<rect x="350.3" y="73" width="259.4" height="19" rx="9.5" class="tag2"/>
+<text x="480" y="87" class="tagt2" font-size="12.1" font-weight="600" text-anchor="middle">NEW: y = x + F(x), no gate, no weights</text>
+<rect x="645.1" y="73" width="309.8" height="19" rx="9.5" class="tag3"/>
+<text x="800" y="87" class="tagt3" font-size="12.1" font-weight="600" text-anchor="middle">NEW: a clean stream that blocks read and write</text>
+<path d="M320 20 V570" class="sep"/>
+<path d="M640 20 V570" class="sep"/>
+</svg>
