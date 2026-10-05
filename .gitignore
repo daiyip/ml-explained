@@ -5,3 +5,5 @@ site/
 surveys/
 .venv/
 .cache/
+seed-runs/
+chapters/*/.seed*.ipynb
