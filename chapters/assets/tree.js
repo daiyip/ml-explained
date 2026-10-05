@@ -63,7 +63,7 @@
         { t: "Mixtral", y: 2023, n: "8 experts, top-2 routing: an open MoE that matches much larger dense models." },
         { t: "DeepSeekMoE", y: 2024, n: "Many fine-grained experts plus always-on shared experts." } ] } ] },
 
-    { part: "architecture", title: "Normalization", ch: 6, branches: [
+    { part: "architecture", title: "Normalization", ch: 6, ready: "06-normalization/", branches: [
       { key: "norm", kind: "main", steps: [
         { t: "none", y: null, n: "Careful initialization was the only defence against drifting activations." },
         { t: "BatchNorm", y: 2015, m: 1, n: "Normalize each channel over the batch; much faster CNN training." },
