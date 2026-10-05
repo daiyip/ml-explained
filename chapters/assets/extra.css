@@ -160,8 +160,13 @@ body { background: var(--mlx-paper); }
 .mlx-pipe__node small { font-size: 0.6rem; opacity: 0.75; margin-left: 0.3rem; }
 .mlx-pipe__node--thin { padding-inline: 0.45rem; color: #97a6b9; }
 .mlx-pipe__node--blue { border-color: #8fa6ff; color: #8fa6ff; }
-.mlx-pipe__node--green { border-color: #5cff8a; color: #5cff8a; box-shadow: 0 0 18px -6px #5cff8a; transition: transform 0.15s; }
-.md-typeset .mlx-pipe__node--green:hover, .mlx-pipe__node--green:hover { color: #5cff8a; transform: translateY(-2px); }
+.mlx-pipe__node--green { border-color: #5cff8a; color: #5cff8a; }
+/* Every block links to its chapter; all of them lift and glow on hover */
+.mlx-pipe a.mlx-pipe__node, .mlx-pipe a.mlx-pipe__add { transition: transform 0.15s, box-shadow 0.15s; }
+.mlx-pipe a.mlx-pipe__node:hover, .mlx-pipe a.mlx-pipe__add:hover { transform: translateY(-2px); box-shadow: 0 0 18px -6px currentColor; }
+.mlx-pipe a.mlx-pipe__node { color: #e9eef7; } .mlx-pipe a.mlx-pipe__node--thin { color: #97a6b9; }
+.mlx-pipe a.mlx-pipe__node--blue { color: #8fa6ff; } .mlx-pipe a.mlx-pipe__node--green { color: #5cff8a; }
+.mlx-pipe a.mlx-pipe__add { color: #5cff8a; text-decoration: none; }
 .mlx-pipe__add { position: relative; font-family: var(--mlx-mono); color: #5cff8a; background: #05080e; border: 1px solid #5cff8a; border-radius: 50%; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; font-size: 0.75rem; }
 
 .mlx-stats { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; font-size: 0.78rem; color: var(--mlx-ink-soft); }
@@ -220,7 +225,7 @@ body { background: var(--mlx-paper); }
   .mlx-shelf__label h2 { font-size: 1.35rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mlx-card, .mlx-pipe__node--green { transition: none; }
+  .mlx-card, .mlx-pipe a.mlx-pipe__node, .mlx-pipe a.mlx-pipe__add { transition: none; }
 }
 .mlx-wrap [hidden] { display: none !important; }
 .jupyter-wrapper .jp-RenderedHTMLCommon :is(h1, h2, h3, h4) { font-family: var(--mlx-display); font-weight: 600; color: var(--mlx-ink); text-wrap: balance; }
