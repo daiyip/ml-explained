@@ -1,0 +1,78 @@
+name: Seed runs
+
+# Re-runs chapter notebooks with several seeds and packages what they print,
+# so every number in the text can be checked against its seed-to-seed spread.
+# Start it from the Actions tab; download "seed-results" from the run page.
+
+on:
+  workflow_dispatch:
+    inputs:
+      chapters:
+        description: "Chapters to run, space-separated (e.g. 05-channel-mixing 07-residual), or all"
+        default: all
+      seeds:
+        description: "Seed offsets, space-separated (0 is the committed run)"
+        default: "0 1 2"
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      chapters: ${{ steps.plan.outputs.chapters }}
+      seeds: ${{ steps.plan.outputs.seeds }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        env:
+          CHAPTERS: ${{ inputs.chapters }}
+          SEEDS: ${{ inputs.seeds }}
+        run: |
+          if [ "$CHAPTERS" = "all" ]; then CHAPTERS=$(ls chapters | grep '^[0-9]'); fi
+          echo "chapters=$(printf '%s\n' $CHAPTERS | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+          echo "seeds=$(printf '%s\n' $SEEDS | jq -R 'tonumber' | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: ${{ fromJSON(needs.plan.outputs.chapters) }}
+        seed: ${{ fromJSON(needs.plan.outputs.seeds) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy matplotlib nbconvert ipykernel
+      - run: python tools/seeds.py "${{ matrix.chapter }}" "${{ matrix.seed }}" seed-runs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: run-${{ matrix.chapter }}-s${{ matrix.seed }}
+          path: seed-runs
+
+  summary:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: run-*
+          path: seed-runs
+          merge-multiple: true
+      - run: |
+          python tools/seed_table.py seed-runs > seed-runs/summary.md
+          cat seed-runs/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seed-results
+          path: seed-runs
