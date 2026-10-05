@@ -412,7 +412,7 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-why--tabs > .mlx-why__card { margin-top: 0; }
 .md-typeset .mlx-why--tabs > .mlx-why__card > .mlx-why__n, .md-typeset .mlx-why--tabs > .mlx-why__card > h3 { display: none; }
 
-/* ---------- Brand: code wordmark, ml.explained() ---------- */
+/* ---------- Brand: code wordmark, transformer.explained() ---------- */
 .md-header .mlx-logo { display: inline-flex; align-items: baseline; color: var(--mlx-ink); text-decoration: none; line-height: 1;
   font-family: var(--mlx-mono); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.01em; }
 .mlx-logo__ml { color: var(--mlx-accent); font-weight: 600; }
@@ -478,7 +478,7 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   .mlx-panel-toggle--toc { display: inline-flex; }
   .mlx-hide-toc .md-sidebar--secondary { display: none; }
 }
-@media screen and (max-width: 30em) { .md-header .mlx-logo { font-size: 1.15rem; } }
+@media screen and (max-width: 30em) { .md-header .mlx-logo { font-size: min(0.74rem, 3.6vw); } }
 
 /* GitHub link in the header: just the mark, no repo stats */
 .md-header .mlx-gh { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; margin: 0 0.3rem 0 0.6rem;

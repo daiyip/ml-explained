@@ -1,6 +1,6 @@
-# Machine Learning Explained
+# Transformer Explained
 
-*The modern Transformer, one building block at a time.*
+*A modern Transformer taken apart, one building block at a time.*
 
 A post-mortem of deep learning from AlexNet (2012) to today's large language models: take a modern Transformer apart, then trace how each building block evolved and why each replacement won.
 

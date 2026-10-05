@@ -27,7 +27,7 @@ LINEAGES = pathlib.Path(__file__).with_name("lineages.json")
 
 def fetch(path: str, params: dict, retries: int = 6) -> dict:
     url = f"{API}{path}?{urllib.parse.urlencode(params)}"
-    headers = {"User-Agent": "ml-explained-survey"}
+    headers = {"User-Agent": "transformer-explained-survey"}
     if os.environ.get("S2_API_KEY"):
         headers["x-api-key"] = os.environ["S2_API_KEY"]
     for attempt in range(retries):

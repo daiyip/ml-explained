@@ -1,4 +1,4 @@
-"""Shared helpers for the ml-explained notebooks.
+"""Shared helpers for the transformer-explained notebooks.
 
 Each chapter imports only what it needs from here, so the notebook itself can
 show just the idea being explained.

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mlexp"
 version = "0.1.0"
-description = "Shared helpers for the ml-explained notebooks"
+description = "Shared helpers for the transformer-explained notebooks"
 requires-python = ">=3.10"
 dependencies = ["torch>=2.1", "numpy", "matplotlib"]
 
