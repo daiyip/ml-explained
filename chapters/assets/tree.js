@@ -111,7 +111,7 @@
         { t: "warmup-stable-decay", y: 2024, n: "Hold the rate flat and decay only at the end; easy to extend runs." },
         { t: "schedule-free", y: 2024.5, n: "Iterate averaging replaces the schedule altogether." } ] } ] },
 
-    { part: "training", title: "Initialization and regularization", ch: 11, branches: [
+    { part: "training", title: "Initialization and regularization", ch: 11, ready: "11-initialization/", branches: [
       { key: "init", kind: "main", steps: [
         { t: "Xavier init", y: 2010, n: "Scale weights so signal variance is kept across sigmoid and tanh layers." },
         { t: "dropout", y: 2012, n: "Randomly zero units during training to prevent co-adaptation." },
