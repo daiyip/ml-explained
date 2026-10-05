@@ -52,17 +52,17 @@
     <div class="mlx-bench" role="group" aria-label="The blocks of a modern Transformer, each linked to its lineage">
       <div class="mlx-bench__label"><span>decoder-only LM</span><span>(B, T, d)</span></div>
       <div class="mlx-pipe">
-        <span class="mlx-pipe__node">Embed</span>
+        <a class="mlx-pipe__node" href="{{ ('02-tokens/' ~ ext) | url }}" title="Chapter 2: tokens and embeddings">Embed</a>
         <div class="mlx-pipe__block">
           <span class="mlx-pipe__rep">&times; N</span>
-          <span class="mlx-pipe__node mlx-pipe__node--thin">Norm</span>
-          <span class="mlx-pipe__node mlx-pipe__node--blue">Attention <small>33%</small></span>
-          <span class="mlx-pipe__add">+</span>
-          <span class="mlx-pipe__node mlx-pipe__node--thin">Norm</span>
-          <a class="mlx-pipe__node mlx-pipe__node--green" href="{{ ('05-channel-mixing/' ~ ext) | url }}">Feed-forward <small>65%</small></a>
-          <span class="mlx-pipe__add">+</span>
+          <a class="mlx-pipe__node mlx-pipe__node--thin" href="{{ ('06-normalization/' ~ ext) | url }}" title="Chapter 6: normalization">Norm</a>
+          <a class="mlx-pipe__node mlx-pipe__node--blue" href="{{ ('04-token-mixing/' ~ ext) | url }}" title="Chapter 4: token mixing">Attention <small>33%</small></a>
+          <a class="mlx-pipe__add" href="{{ ('07-residual/' ~ ext) | url }}" title="Chapter 7: residual connections">+</a>
+          <a class="mlx-pipe__node mlx-pipe__node--thin" href="{{ ('06-normalization/' ~ ext) | url }}" title="Chapter 6: normalization">Norm</a>
+          <a class="mlx-pipe__node mlx-pipe__node--green" href="{{ ('05-channel-mixing/' ~ ext) | url }}" title="Chapter 5: channel mixing">Feed-forward <small>65%</small></a>
+          <a class="mlx-pipe__add" href="{{ ('07-residual/' ~ ext) | url }}" title="Chapter 7: residual connections">+</a>
         </div>
-        <span class="mlx-pipe__node">Head</span>
+        <a class="mlx-pipe__node" href="{{ ('08-objective/' ~ ext) | url }}" title="Chapter 8: objective and loss">Head</a>
       </div>
     </div>
     <div class="mlx-stats">
