@@ -29,7 +29,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
-CITATION = re.compile(r"(?:^|\n)[-*] ([^\n\[\]]+?), (\d{4})[a-z]?, \[([^\]]+)\]\((\S+?)\)")
+CITATION = re.compile(r"(?:^|\n)[-*] ([^\n\[\]]+?), (\d{4})[a-z]?, \[([^\]]+)\]\(((?:[^\s()]|\([^\s()]*\))+)\)")
 DOI = re.compile(r"doi\.org/(10\.\S+)")
 ARXIV_ID = re.compile(r"arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5}|[a-z\-]+/\d{7})")
 S2 = "https://api.semanticscholar.org/graph/v1"
@@ -154,8 +154,8 @@ def check(c: dict, paper: dict | None, venue: dict | None) -> list[str]:
             shown = ", ".join(actual) if len(actual) <= 4 else f"{actual[0]} and {len(actual) - 1} others"
             problems.append(f"names {len(names)} authors, the paper has {len(actual)}: {shown}")
     years = {y for y in [paper and paper["year"], venue and venue["year"]] if y}
-    if paper and venue and venue["venue"]:
-        years.add(paper["year"] + 1)  # conference version, a year after the preprint
+    if paper:
+        years.add(paper["year"] + 1)  # the conference version usually appears a year after the preprint
     if years and c["year"] not in years:
         problems.append(f"year {c['year']}, but the paper is from {' / '.join(map(str, sorted(years)))}")
     return problems
