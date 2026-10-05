@@ -47,6 +47,10 @@ python tools/seeds.py 05-channel-mixing 1 seed-runs   # seed offset 1
 python tools/seed_table.py seed-runs > summary.md
 ```
 
+## Checking citations
+
+Run the `Citation check` workflow from the Actions tab; it also runs on pull requests that change a chapter. It looks up every "Authors, Year, [Title](url)" citation on arXiv and Semantic Scholar and lists any whose link, title, first author, "et al." or year does not match. The report is in the run summary and the `cite-report` artifact. Locally: `python tools/cite_check.py --out cite-report.md`.
+
 ## Surveying papers for a lineage
 
 Run the `Paper survey` workflow from the Actions tab and pick a lineage. It finds each seed paper in `tools/lineages.json` on Semantic Scholar and lists its most-cited follow-ups. The report appears in the run summary and as a downloadable artifact. Locally:

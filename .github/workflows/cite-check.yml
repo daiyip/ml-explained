@@ -1,0 +1,33 @@
+name: Citation check
+
+# Looks up every "Authors, Year, [Title](url)" citation in the chapters on
+# arXiv and Semantic Scholar and reports titles, authors and years that do not
+# match. The report is in the run summary and the cite-report artifact.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "chapters/**/*.ipynb"
+      - "tools/cite_check.py"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - env:
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+        run: |
+          python tools/cite_check.py --out cite-report.md
+          cat cite-report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cite-report
+          path: cite-report.md

@@ -70,7 +70,7 @@ jobs:
           path: seed-runs
           merge-multiple: true
       - run: |
-          python tools/seed_table.py seed-runs > seed-runs/summary.md
+          python tools/seed_table.py seed-runs | tee seed-runs/summary.md
           cat seed-runs/summary.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
