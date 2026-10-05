@@ -15,7 +15,7 @@ NUM = re.compile(r"(?<![\w.])-?\d[\d,]*\.?\d*(?:e[+-]?\d+)?")
 
 
 def key(line: str) -> str:
-    return NUM.sub("#", line).strip()
+    return " ".join(NUM.sub("#", line).split())  # numbers and column padding vary by seed
 
 
 def numbers(line: str) -> list[float]:
@@ -35,9 +35,11 @@ def summarise(chapter_dir: pathlib.Path) -> list[str]:
     runs = sorted(chapter_dir.glob("s*/results.txt"))
     per_seed = [p.read_text().splitlines() for p in runs]
     rows = [f"## {chapter_dir.name} ({len(runs)} seeds: {', '.join(p.parent.name for p in runs)})", ""]
+    seen: dict[str, int] = {}
     for line in per_seed[0] if per_seed else []:
         k = key(line)
-        matches = [next((l for l in lines if key(l) == k), None) for lines in per_seed]
+        nth = seen[k] = seen.get(k, -1) + 1  # repeated lines (one per epoch, say) pair up in order
+        matches = [([l for l in lines if key(l) == k] + [None] * (nth + 1))[nth] for lines in per_seed]
         nums = [numbers(m) for m in matches if m is not None]
         if not nums or not nums[0] or len({len(n) for n in nums}) != 1:
             continue
