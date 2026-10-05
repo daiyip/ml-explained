@@ -19,8 +19,8 @@
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
-          {#- Brand: the code wordmark transformer.explained(). -#}
-          <a class="mlx-logo" href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" aria-label="{{ config.site_name }}, home"><span class="mlx-logo__ml">transformer</span>.explained<span class="mlx-logo__call">()</span><span class="mlx-logo__cursor" aria-hidden="true"></span></a>
+          {#- Brand: attention arcs (the newest token looking back at earlier ones) beside the stacked name. -#}
+          <a class="mlx-logo" href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" aria-label="{{ config.site_name }}, home"><svg class="mlx-logo__mark" viewBox="1 11 30 17" aria-hidden="true"><g class="mlx-logo__arcs" fill="none"><path d="M27 23C27 13 5 13 5 23" stroke-width="1.4" opacity=".45"/><path d="M27 23C27 15 12 15 12 23" stroke-width="2.4"/><path d="M27 23C27 17.5 19.5 17.5 19.5 23" stroke-width="1.6" opacity=".7"/></g><g class="mlx-logo__tokens"><circle cx="5" cy="25" r="2.3"/><circle cx="12" cy="25" r="2.3"/><circle cx="19.5" cy="25" r="2.3"/></g><circle class="mlx-logo__query" cx="27" cy="25" r="2.8"/></svg><span class="mlx-logo__text"><span class="mlx-logo__name">Transformer</span><span class="mlx-logo__sub">Explained</span></span></a>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
