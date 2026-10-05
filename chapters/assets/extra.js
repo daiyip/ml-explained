@@ -157,14 +157,14 @@
       });
     });
 
-    // "What changed" cards become tabs, one per generation.
-    content.querySelectorAll(".mlx-why").forEach(function (why) {
+    // "What changed" cards (and the "Diverged branches" forks) become tabs, one per card.
+    content.querySelectorAll(".mlx-why").forEach(function (why, g) {
       var cards = Array.prototype.slice.call(why.querySelectorAll(":scope > .mlx-why__card"));
       if (cards.length < 2) return;
       var bar = document.createElement("div");
       bar.className = "mlx-steps__bar mlx-why__bar";
       bar.setAttribute("role", "tablist");
-      bar.setAttribute("aria-label", "What changed in each generation");
+      bar.setAttribute("aria-label", why.dataset.label || "What changed in each generation");
       why.prepend(bar);
       why.classList.add("mlx-why--tabs");
       var tabs = cards.map(function (card, i) {
@@ -172,7 +172,7 @@
         var tab = document.createElement("button");
         tab.type = "button";
         tab.className = "mlx-steps__tab mlx-why__tab mlx-why__tab--" + (i + 1);
-        tab.id = "mlx-why-tab-" + (i + 1);
+        tab.id = "mlx-why-tab-" + (g + 1) + "-" + (i + 1);
         tab.setAttribute("role", "tab");
         tab.innerHTML = '<span class="mlx-steps__n"></span><span class="mlx-steps__title"></span>';
         tab.firstChild.textContent = n ? n.textContent : String(i + 1);
