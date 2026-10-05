@@ -1,80 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" font-family="Inter, Helvetica, Arial, sans-serif">
-<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
-<rect width="780" height="500" fill="white"/>
-<text x="130" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">1. MLP (2012-2020)</text>
-<text x="130" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">ReLU, then GELU</text>
-<rect x="40.0" y="380" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="130" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
-<text x="130" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
-<line x1="130" y1="380" x2="130" y2="352" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="40.0" y="308" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="130" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear up</text>
-<text x="130" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 4d</text>
-<line x1="130" y1="308" x2="130" y2="280" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="40.0" y="236" width="180" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
-<text x="130" y="256" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Activation</text>
-<text x="130" y="272" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">ReLU or GELU</text>
-<line x1="130" y1="236" x2="130" y2="208" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="40.0" y="164" width="180" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="130" y="184" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear down</text>
-<text x="130" y="200" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">4d to d</text>
-<text x="130" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: 8d²</text>
-<text x="390" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">2. SwiGLU (2020-)</text>
-<text x="390" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">a gate decides what passes</text>
-<rect x="290.0" y="380" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="390" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
-<text x="390" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
-<path d="M390 380 V368 H330 V352" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<path d="M390 368 H450 V352" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="278.0" y="308" width="104" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="330" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear gate</text>
-<text x="330" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 8d/3</text>
-<rect x="398.0" y="308" width="104" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="450" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear up</text>
-<text x="450" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">d to 8d/3</text>
-<line x1="330" y1="308" x2="330" y2="280" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="278.0" y="236" width="104" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
-<text x="330" y="256" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">SiLU</text>
-<text x="330" y="272" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">Swish</text>
-<path d="M330 236 V196 H380" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<path d="M450 308 V196 H400" fill="none" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<circle cx="390" cy="196" r="10" fill="white" stroke="#9ca3af"/>
-<text x="390" y="200.5" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">×</text>
-<line x1="390" y1="186" x2="390" y2="164" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="290.0" y="120" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="390" y="140" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Linear down</text>
-<text x="390" y="156" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">8d/3 to d</text>
-<text x="390" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: 8d² (same budget)</text>
-<text x="640" y="34" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">3. Mixture of Experts (2017-)</text>
-<text x="640" y="52" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">many FFNs, each token uses k</text>
-<rect x="540.0" y="380" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="640" y="400" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">x</text>
-<text x="640" y="416" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">(T, d)</text>
-<line x1="640" y1="380" x2="640" y2="352" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="528.0" y="308" width="224" height="44" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.75"/>
-<text x="640" y="328" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Router</text>
-<text x="640" y="344" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">softmax over E experts, keep top-k</text>
-<rect x="537" y="228" width="44" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
-<text x="559" y="252" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">E1</text>
-<line x1="559" y1="308" x2="559" y2="272" stroke="#2563eb" stroke-width="1.25" stroke-dasharray="0" marker-end="url(#a)"/>
-<path d="M559 228 V206 H630" fill="none" stroke="#2563eb" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="591" y="228" width="44" height="40" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="613" y="252" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">E2</text>
-<line x1="613" y1="308" x2="613" y2="272" stroke="#9ca3af" stroke-width="1.25" stroke-dasharray="3 3" marker-end="url(#a)"/>
-<rect x="645" y="228" width="44" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.75"/>
-<text x="667" y="252" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">E3</text>
-<line x1="667" y1="308" x2="667" y2="272" stroke="#2563eb" stroke-width="1.25" stroke-dasharray="0" marker-end="url(#a)"/>
-<path d="M667 228 V206 H650" fill="none" stroke="#2563eb" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="699" y="228" width="44" height="40" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="721" y="252" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">E4</text>
-<line x1="721" y1="308" x2="721" y2="272" stroke="#9ca3af" stroke-width="1.25" stroke-dasharray="3 3" marker-end="url(#a)"/>
-<text x="640" y="70" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">each expert is its own SwiGLU FFN</text>
-<circle cx="640" cy="196" r="10" fill="white" stroke="#9ca3af"/>
-<text x="640" y="200.5" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Σ</text>
-<line x1="640" y1="186" x2="640" y2="164" stroke="#9ca3af" stroke-width="1.25" marker-end="url(#a)"/>
-<rect x="540.0" y="120" width="200" height="44" rx="8" fill="white" stroke="#9ca3af" stroke-width="1.25"/>
-<text x="640" y="140" font-size="13" font-weight="600" fill="#111827" text-anchor="middle">Weighted sum</text>
-<text x="640" y="156" font-size="11" font-weight="400" fill="#6b7280" text-anchor="middle">router weights × expert outputs</text>
-<text x="640" y="440" font-size="11.5" font-weight="400" fill="#6b7280" text-anchor="middle">params: E×8d², compute: k×8d²</text>
-<text x="390" y="476" font-size="12" font-weight="400" fill="#6b7280" text-anchor="middle">All three map each token (T, d) to (T, d) independently: the feed-forward layer never mixes tokens.</text>
+<svg xmlns="http://www.w3.org/2000/svg" class="ffn-fig" viewBox="0 0 960 600" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif">
+<style> .ffn-fig .t{fill:var(--mlx-ink,#131c27)} .ffn-fig .q{fill:var(--mlx-ink-soft,#4a5868)} .ffn-fig .b{fill:var(--mlx-panel,#fff);stroke:var(--mlx-ink-soft,#4a5868);stroke-opacity:.45;stroke-width:1.25} .ffn-fig .off{opacity:.55} .ffn-fig .e,.ffn-fig .e2,.ffn-fig .e3,.ffn-fig .ed{fill:none;stroke-width:1.5} .ffn-fig .e{stroke:var(--mlx-ink-soft,#4a5868)} .ffn-fig .ed{stroke:var(--mlx-ink-soft,#4a5868);stroke-dasharray:3 4;opacity:.6} .ffn-fig .e2{stroke:var(--mlx-good,#1f8a5b)} .ffn-fig .e3{stroke:var(--mlx-warn,#b5562b)} .ffn-fig .ah{fill:var(--mlx-ink-soft,#4a5868)} .ffn-fig .sep{stroke:var(--mlx-rule,#d3dae3);stroke-dasharray:2 5} .ffn-fig .n1,.ffn-fig .n2,.ffn-fig .n3{stroke-width:2} .ffn-fig .n1{fill:rgba(38,71,201,.08);fill:color-mix(in srgb,var(--mlx-accent,#2647c9) 12%,transparent);stroke:var(--mlx-accent,#2647c9)} .ffn-fig .n2{fill:rgba(31,138,91,.08);fill:color-mix(in srgb,var(--mlx-good,#1f8a5b) 14%,transparent);stroke:var(--mlx-good,#1f8a5b)} .ffn-fig .n3{fill:rgba(181,86,43,.08);fill:color-mix(in srgb,var(--mlx-warn,#b5562b) 14%,transparent);stroke:var(--mlx-warn,#b5562b)} .ffn-fig .tag1{fill:var(--mlx-accent,#2647c9)} .ffn-fig .tag2{fill:var(--mlx-good,#1f8a5b)} .ffn-fig .tag3{fill:var(--mlx-warn,#b5562b)} .ffn-fig .tagt1,.ffn-fig .tagt2,.ffn-fig .tagt3{fill:var(--mlx-paper,#fff)} .ffn-fig .c0,.ffn-fig .c1,.ffn-fig .c2{fill:none;stroke-width:2;stroke-linecap:round} .ffn-fig .c0{stroke:var(--mlx-ink-soft,#4a5868);stroke-dasharray:3 3} .ffn-fig .c1{stroke:var(--mlx-warn,#b5562b)} .ffn-fig .c2{stroke:var(--mlx-accent,#2647c9)} .ffn-fig .cl1{fill:var(--mlx-warn,#b5562b)} .ffn-fig .cl2{fill:var(--mlx-accent,#2647c9)}
+</style>
+<defs><marker id="ffn-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
+<text x="160" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">1. MLP</text>
+<text x="160" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">sigmoid, then ReLU, then GELU</text>
+<g transform="translate(0,40)">
+<rect x="60.0" y="452" width="200" height="48" rx="8" class="b"/>
+<text x="160" y="473" class="t" font-size="16.1" font-weight="600" text-anchor="middle">x</text>
+<text x="160" y="490" class="q" font-size="13.8" font-weight="400" text-anchor="middle">one token, width d</text>
+<path d="M160 452 V420" class="e" marker-end="url(#ffn-a)"/>
+<rect x="60.0" y="372" width="200" height="48" rx="8" class="b"/>
+<text x="160" y="393" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear up</text>
+<text x="160" y="410" class="q" font-size="13.8" font-weight="400" text-anchor="middle">d to 4d</text>
+<path d="M160 372 V346" class="e" marker-end="url(#ffn-a)"/>
+<rect x="60" y="222" width="200" height="122" rx="8" class="n1"/>
+<text x="160" y="243" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Activation</text>
+<polyline points="80.0,317.5 84.0,317.3 88.0,317.1 92.0,316.9 96.0,316.6 100.0,316.2 104.0,315.8 108.0,315.2 112.0,314.5 116.0,313.6 120.0,312.5 124.0,311.2 128.0,309.6 132.0,307.6 136.0,305.4 140.0,302.7 144.0,299.7 148.0,296.4 152.0,292.8 156.0,288.9 160.0,285.0 164.0,281.1 168.0,277.2 172.0,273.6 176.0,270.3 180.0,267.3 184.0,264.6 188.0,262.4 192.0,260.4 196.0,258.8 200.0,257.5 204.0,256.4 208.0,255.5 212.0,254.8 216.0,254.2 220.0,253.8 224.0,253.4 228.0,253.1 232.0,252.9 236.0,252.7 240.0,252.5" class="c0"/>
+<polyline points="80.0,318.0 84.0,318.0 88.0,318.0 92.0,318.0 96.0,318.0 100.0,318.0 104.0,318.0 108.0,318.0 112.0,318.0 116.0,318.0 120.0,318.0 124.0,318.0 128.0,318.0 132.0,318.0 136.0,318.0 140.0,318.0 144.0,318.0 148.0,318.0 152.0,318.0 156.0,318.0 160.0,318.0 164.0,314.7 168.0,311.4 172.0,308.1 176.0,304.8 180.0,301.5 184.0,298.2 188.0,294.9 192.0,291.6 196.0,288.3 200.0,285.0 204.0,281.7 208.0,278.4 212.0,275.1 216.0,271.8 220.0,268.5 224.0,265.2 228.0,261.9 232.0,258.6 236.0,255.3 240.0,252.0" class="c1"/>
+<polyline points="80.0,314.8 84.0,314.9 88.0,315.0 92.0,315.1 96.0,315.3 100.0,315.5 104.0,315.7 108.0,315.9 112.0,316.1 116.0,316.4 120.0,316.7 124.0,317.0 128.0,317.3 132.0,317.6 136.0,317.8 140.0,317.9 144.0,317.8 148.0,317.4 152.0,316.8 156.0,315.8 160.0,314.5 164.0,312.7 168.0,310.6 172.0,308.1 176.0,305.3 180.0,302.3 184.0,299.1 188.0,295.7 192.0,292.3 196.0,288.9 200.0,285.5 204.0,282.1 208.0,278.7 212.0,275.3 216.0,271.9 220.0,268.6 224.0,265.3 228.0,262.1 232.0,258.8 236.0,255.6 240.0,252.4" class="c2"/>
+<text x="106" y="336" class="q" font-size="12.1" font-weight="400" text-anchor="middle">sigmoid</text>
+<text x="166" y="336" class="cl1" font-size="12.1" font-weight="600" text-anchor="middle">ReLU</text>
+<text x="218" y="336" class="cl2" font-size="12.1" font-weight="600" text-anchor="middle">GELU</text>
+<path d="M160 222 V190" class="e" marker-end="url(#ffn-a)"/>
+<rect x="60.0" y="142" width="200" height="48" rx="8" class="b"/>
+<text x="160" y="163" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear down</text>
+<text x="160" y="180" class="q" font-size="13.8" font-weight="400" text-anchor="middle">4d to d</text>
+<path d="M160 142 V104" class="e" marker-end="url(#ffn-a)"/>
+<text x="160" y="96" class="q" font-size="13.8" font-weight="400" text-anchor="middle">output, width d</text>
+<text x="160" y="520" class="q" font-size="14.4" font-weight="400" text-anchor="middle">parameters 8d², all used per token</text>
+</g>
+<text x="480" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">2. SwiGLU</text>
+<text x="480" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">a gate decides what passes</text>
+<g transform="translate(0,40)">
+<rect x="380.0" y="452" width="200" height="48" rx="8" class="b"/>
+<text x="480" y="473" class="t" font-size="16.1" font-weight="600" text-anchor="middle">x</text>
+<text x="480" y="490" class="q" font-size="13.8" font-weight="400" text-anchor="middle">one token, width d</text>
+<path d="M480 452 V436 H418 V412" class="e" marker-end="url(#ffn-a)"/>
+<path d="M480 436 H542 V412" class="e" marker-end="url(#ffn-a)"/>
+<rect x="362.0" y="364" width="112" height="48" rx="8" class="n2"/>
+<text x="418" y="385" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear gate</text>
+<text x="418" y="402" class="q" font-size="13.8" font-weight="400" text-anchor="middle">d to 8d/3</text>
+<rect x="486.0" y="364" width="112" height="48" rx="8" class="b"/>
+<text x="542" y="385" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear up</text>
+<text x="542" y="402" class="q" font-size="13.8" font-weight="400" text-anchor="middle">d to 8d/3</text>
+<path d="M418 364 V334" class="e" marker-end="url(#ffn-a)"/>
+<rect x="362.0" y="286" width="112" height="48" rx="8" class="b"/>
+<text x="418" y="307" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Swish</text>
+<text x="418" y="324" class="q" font-size="13.8" font-weight="400" text-anchor="middle">smooth ReLU</text>
+<path d="M418 286 V242 H466" class="e2" marker-end="url(#ffn-a)"/>
+<path d="M542 364 V242 H494" class="e" marker-end="url(#ffn-a)"/>
+<circle cx="480" cy="242" r="12" class="n2"/>
+<text x="480" y="247" class="t" font-size="17.2" font-weight="600" text-anchor="middle">×</text>
+<path d="M480 230 V190" class="e" marker-end="url(#ffn-a)"/>
+<rect x="380.0" y="142" width="200" height="48" rx="8" class="b"/>
+<text x="480" y="163" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Linear down</text>
+<text x="480" y="180" class="q" font-size="13.8" font-weight="400" text-anchor="middle">8d/3 to d</text>
+<path d="M480 142 V104" class="e" marker-end="url(#ffn-a)"/>
+<text x="480" y="96" class="q" font-size="13.8" font-weight="400" text-anchor="middle">output, width d</text>
+<text x="480" y="520" class="q" font-size="14.4" font-weight="400" text-anchor="middle">parameters 8d², the same budget</text>
+</g>
+<text x="800" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">3. Mixture of Experts</text>
+<text x="800" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">many FFNs, each token uses k</text>
+<g transform="translate(0,40)">
+<rect x="700.0" y="452" width="200" height="48" rx="8" class="b"/>
+<text x="800" y="473" class="t" font-size="16.1" font-weight="600" text-anchor="middle">x</text>
+<text x="800" y="490" class="q" font-size="13.8" font-weight="400" text-anchor="middle">one token, width d</text>
+<path d="M800 452 V420" class="e" marker-end="url(#ffn-a)"/>
+<rect x="685.0" y="372" width="230" height="48" rx="8" class="n3"/>
+<text x="800" y="393" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Router</text>
+<text x="800" y="410" class="q" font-size="13.8" font-weight="400" text-anchor="middle">scores E experts, keeps top k</text>
+<path d="M713 372 V322" class="e3" marker-end="url(#ffn-a)"/>
+<rect x="689" y="276" width="48" height="44" rx="8" class="n3"/>
+<text x="713" y="296" class="t" font-size="13.8" font-weight="600" text-anchor="middle">FFN1</text>
+<text x="713" y="311" class="q" font-size="10.9" font-weight="400" text-anchor="middle">SwiGLU</text>
+<path d="M713 276 V242 H786" class="e3" marker-end="url(#ffn-a)"/>
+<path d="M771 372 V322" class="ed" marker-end="url(#ffn-a)"/>
+<rect x="747" y="276" width="48" height="44" rx="8" class="b off"/>
+<text x="771" y="296" class="q" font-size="13.8" font-weight="600" text-anchor="middle">FFN2</text>
+<text x="771" y="311" class="q" font-size="10.9" font-weight="400" text-anchor="middle">SwiGLU</text>
+<path d="M829 372 V322" class="e3" marker-end="url(#ffn-a)"/>
+<rect x="805" y="276" width="48" height="44" rx="8" class="n3"/>
+<text x="829" y="296" class="t" font-size="13.8" font-weight="600" text-anchor="middle">FFN3</text>
+<text x="829" y="311" class="q" font-size="10.9" font-weight="400" text-anchor="middle">SwiGLU</text>
+<path d="M829 276 V242 H814" class="e3" marker-end="url(#ffn-a)"/>
+<path d="M887 372 V322" class="ed" marker-end="url(#ffn-a)"/>
+<rect x="863" y="276" width="48" height="44" rx="8" class="b off"/>
+<text x="887" y="296" class="q" font-size="13.8" font-weight="600" text-anchor="middle">FFN4</text>
+<text x="887" y="311" class="q" font-size="10.9" font-weight="400" text-anchor="middle">SwiGLU</text>
+<circle cx="800" cy="242" r="12" class="n3"/>
+<text x="800" y="247" class="t" font-size="17.2" font-weight="600" text-anchor="middle">Σ</text>
+<path d="M800 230 V190" class="e" marker-end="url(#ffn-a)"/>
+<rect x="700.0" y="142" width="200" height="48" rx="8" class="b"/>
+<text x="800" y="163" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Weighted sum</text>
+<text x="800" y="180" class="q" font-size="13.8" font-weight="400" text-anchor="middle">by the router's scores</text>
+<path d="M800 142 V104" class="e" marker-end="url(#ffn-a)"/>
+<text x="800" y="96" class="q" font-size="13.8" font-weight="400" text-anchor="middle">output, width d</text>
+<text x="800" y="520" class="q" font-size="14.4" font-weight="400" text-anchor="middle">parameters E × 8d², compute k × 8d²</text>
+</g>
+<rect x="49.2" y="73" width="221.6" height="19" rx="9.5" class="tag1"/>
+<text x="160" y="87" class="tagt1" font-size="12.1" font-weight="600" text-anchor="middle">NEW: a non-saturating activation</text>
+<rect x="372.35" y="73" width="215.29999999999998" height="19" rx="9.5" class="tag2"/>
+<text x="480" y="87" class="tagt2" font-size="12.1" font-weight="600" text-anchor="middle">NEW: multiply by a learned gate</text>
+<rect x="692.35" y="73" width="215.29999999999998" height="19" rx="9.5" class="tag3"/>
+<text x="800" y="87" class="tagt3" font-size="12.1" font-weight="600" text-anchor="middle">NEW: route each token to k of E</text>
+<path d="M320 20 V570" class="sep"/>
+<path d="M640 20 V570" class="sep"/>
 </svg>

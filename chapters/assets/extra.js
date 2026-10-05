@@ -81,6 +81,7 @@
       host.replaceWith(f);
       f.append(img, cap);
     });
+    chapterLayout(content);
     // Reading progress along the top edge.
     var bar = document.createElement("div");
     bar.className = "mlx-progress";
@@ -92,6 +93,185 @@
     addEventListener("scroll", progress, { passive: true });
     progress();
   }
+  // Heading text without the section number or the anchor-link pilcrow.
+  function headingText(h) {
+    var c = h.cloneNode(true);
+    c.querySelectorAll(".mlx-secnum, .anchor-link, .headerlink").forEach(function (x) { x.remove(); });
+    return c.textContent.trim();
+  }
+
+  // Chapter pages: themed inline figures that enlarge on click, a folded set-up section,
+  // and the "Step N" sections shown as tabs.
+  function chapterLayout(content) {
+    content.querySelectorAll(".mlx-figure img[src$='.svg']").forEach(function (img, i) {
+      var fig = img.closest(".mlx-figure");
+      if (i === 0) fig.classList.add("mlx-figure--hero");
+      fetch(img.src).then(function (r) { if (!r.ok) throw r; return r.text(); }).then(function (t) {
+        var svg = new DOMParser().parseFromString(t, "image/svg+xml").documentElement;
+        if (svg.nodeName.toLowerCase() !== "svg") return;
+        svg.setAttribute("role", "img");
+        svg.setAttribute("aria-label", img.alt);
+        img.replaceWith(document.importNode(svg, true));
+        fig.classList.add("mlx-figure--inline");
+      }).catch(function () {});
+      var zoom = document.createElement("button");
+      zoom.className = "mlx-zoom";
+      zoom.type = "button";
+      zoom.setAttribute("aria-label", "Enlarge figure");
+      zoom.textContent = "\u2922";
+      fig.prepend(zoom);
+      fig.addEventListener("click", function (ev) {
+        if (ev.target.closest("a")) return;
+        var art = fig.querySelector("svg, img");
+        if (!art) return;
+        var box = document.createElement("div");
+        box.className = "mlx-lightbox";
+        box.setAttribute("role", "dialog");
+        box.setAttribute("aria-label", "Enlarged figure");
+        box.append(art.cloneNode(true));
+        var hint = document.createElement("p");
+        hint.textContent = "Click anywhere or press Escape to close";
+        box.append(hint);
+        function close() { box.remove(); document.removeEventListener("keydown", onKey); zoom.focus(); }
+        function onKey(e) { if (e.key === "Escape") close(); }
+        box.addEventListener("click", close);
+        document.addEventListener("keydown", onKey);
+        document.body.append(box);
+      });
+    });
+
+    // "What changed" cards become tabs, one per generation.
+    content.querySelectorAll(".mlx-why").forEach(function (why) {
+      var cards = Array.prototype.slice.call(why.querySelectorAll(":scope > .mlx-why__card"));
+      if (cards.length < 2) return;
+      var bar = document.createElement("div");
+      bar.className = "mlx-steps__bar mlx-why__bar";
+      bar.setAttribute("role", "tablist");
+      bar.setAttribute("aria-label", "What changed in each generation");
+      why.prepend(bar);
+      why.classList.add("mlx-why--tabs");
+      var tabs = cards.map(function (card, i) {
+        var n = card.querySelector(".mlx-why__n"), h = card.querySelector("h3");
+        var tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "mlx-steps__tab mlx-why__tab mlx-why__tab--" + (i + 1);
+        tab.id = "mlx-why-tab-" + (i + 1);
+        tab.setAttribute("role", "tab");
+        tab.innerHTML = '<span class="mlx-steps__n"></span><span class="mlx-steps__title"></span>';
+        tab.firstChild.textContent = n ? n.textContent : String(i + 1);
+        tab.lastChild.textContent = h ? h.textContent : "";
+        card.setAttribute("role", "tabpanel");
+        card.setAttribute("aria-labelledby", tab.id);
+        tab.addEventListener("click", function () { pick(i); });
+        bar.append(tab);
+        return tab;
+      });
+      bar.addEventListener("keydown", function (e) {
+        var i = tabs.indexOf(document.activeElement);
+        var j = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i + tabs.length - 1) % tabs.length : -1;
+        if (i >= 0 && j >= 0) { e.preventDefault(); pick(j); tabs[j].focus(); }
+      });
+      function pick(i) {
+        tabs.forEach(function (t, k) { t.setAttribute("aria-selected", String(k === i)); t.tabIndex = k === i ? 0 : -1; cards[k].hidden = k !== i; });
+      }
+      pick(0);
+    });
+
+    var first = content.querySelector(".jp-Cell");
+    if (!first) return;
+    var cells = Array.prototype.filter.call(first.parentElement.children, function (c) { return c.classList.contains("jp-Cell"); });
+
+    // Fold the shared set-up code under "Run it yourself".
+    cells.forEach(function (cell, i) {
+      var h = cell.querySelector("h2");
+      if (!h || !/^Run it yourself/.test(headingText(h))) return;
+      var code = [];
+      for (var j = i + 1; j < cells.length && !cells[j].querySelector("h2") && cells[j].classList.contains("jp-CodeCell"); j++) code.push(cells[j]);
+      if (!code.length) return;
+      var d = document.createElement("details");
+      d.className = "mlx-setup";
+      d.innerHTML = "<summary>Show the set-up code</summary>";
+      code[0].before(d);
+      code.forEach(function (c) { d.append(c); });
+    });
+
+    // Group each "Step N (level): title" section into a tab.
+    var steps = [], cur = null;
+    cells.forEach(function (cell) {
+      var h = cell.classList.contains("jp-MarkdownCell") && cell.querySelector("h2");
+      if (h) {
+        var m = headingText(h).match(/^Step (\d+)\s*\((\w+)\):\s*(.+)$/);
+        if (m) { cur = { h: h, n: m[1], level: m[2], title: m[3], cells: [] }; steps.push(cur); }
+        else cur = null;
+      }
+      if (cur) cur.cells.push(cell);
+    });
+    if (steps.length < 2) return;
+
+    var wrap = document.createElement("div");
+    wrap.className = "mlx-steps";
+    var bar = document.createElement("div");
+    bar.className = "mlx-steps__bar";
+    bar.setAttribute("role", "tablist");
+    bar.setAttribute("aria-label", "Steps in this lineage");
+    wrap.append(bar);
+    steps[0].cells[0].before(wrap);
+    steps.forEach(function (st, i) {
+      var tab = document.createElement("button");
+      tab.type = "button";
+      tab.className = "mlx-steps__tab";
+      tab.id = "mlx-tab-" + st.n;
+      tab.setAttribute("role", "tab");
+      tab.innerHTML = '<span class="mlx-steps__n">Step ' + st.n + '</span><span class="mlx-steps__lvl mlx-steps__lvl--' + st.level + '">' + st.level + "</span>" +
+        '<span class="mlx-steps__title"></span>';
+      tab.querySelector(".mlx-steps__title").textContent = st.title;
+      bar.append(tab);
+      var panel = document.createElement("div");
+      panel.className = "mlx-steps__panel";
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", tab.id);
+      st.cells.forEach(function (c) { panel.append(c); });
+      if (steps[i + 1]) {
+        var next = document.createElement("button");
+        next.type = "button";
+        next.className = "mlx-steps__next";
+        next.innerHTML = "Next: Step " + steps[i + 1].n + " &middot; <span></span> &rarr;";
+        next.querySelector("span").textContent = steps[i + 1].title;
+        next.addEventListener("click", function () { show(i + 1, true); wrap.scrollIntoView({ behavior: "smooth", block: "start" }); });
+        panel.append(next);
+      }
+      wrap.append(panel);
+      st.tab = tab; st.panel = panel;
+      tab.addEventListener("click", function () { show(i, true); });
+    });
+    bar.addEventListener("keydown", function (e) {
+      var i = steps.findIndex(function (s) { return s.tab === document.activeElement; });
+      if (i < 0) return;
+      var j = e.key === "ArrowRight" ? (i + 1) % steps.length : e.key === "ArrowLeft" ? (i + steps.length - 1) % steps.length : -1;
+      if (j >= 0) { e.preventDefault(); show(j, true); steps[j].tab.focus(); }
+    });
+    function show(i, record) {
+      steps.forEach(function (st, k) {
+        st.tab.setAttribute("aria-selected", String(k === i));
+        st.tab.tabIndex = k === i ? 0 : -1;
+        st.panel.hidden = k !== i;
+      });
+      if (record && steps[i].h.id) history.replaceState(null, "", "#" + steps[i].h.id);
+    }
+    // Open the tab that holds a linked heading (from the table of contents or a shared link).
+    function follow() {
+      var id = decodeURIComponent(location.hash.slice(1));
+      var el = id && document.getElementById(id);
+      var panel = el && el.closest(".mlx-steps__panel");
+      if (!panel) return false;
+      show(steps.findIndex(function (s) { return s.panel === panel; }), false);
+      el.scrollIntoView();
+      return true;
+    }
+    addEventListener("hashchange", follow);
+    if (!follow()) show(0, false);
+  }
+
   function init() { enhance(); finder(); textbook(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
