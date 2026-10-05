@@ -456,3 +456,7 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
 .mlx-why .mlx-why__fig { float: right; width: min(40%, 17rem); height: auto; margin: 0 0 0.6rem 1.2rem; }
 .mlx-why__card::after { content: ""; display: block; clear: both; }
 @media (max-width: 40em) { .mlx-why .mlx-why__fig { float: none; display: block; width: min(100%, 17rem); margin: 0 auto 0.8rem; } }
+
+/* Keep the opening figure close to the first section */
+.mlx-figure--hero { margin-bottom: 1rem !important; }
+.jupyter-wrapper .jp-Cell:has(.mlx-figure--hero) + .jp-Cell .jp-RenderedHTMLCommon > h2:first-child { margin-top: 0.6rem !important; }
