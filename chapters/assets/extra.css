@@ -121,8 +121,12 @@ body { background: var(--mlx-paper); }
 .jupyter-wrapper .highlight pre { font-size: 0.72rem !important; line-height: 1.6 !important; }
 .jupyter-wrapper .jp-OutputArea-output pre {
   font-family: var(--mlx-mono); font-size: 0.7rem; color: var(--mlx-bench-ink); background: var(--mlx-bench);
-  border: 1px solid var(--mlx-bench-rule); border-radius: var(--mlx-radius); padding: 0.7rem 0.9rem; margin: 0.4rem 0 1rem;
+  border: 1px solid var(--mlx-bench-rule); border-radius: var(--mlx-radius); padding: 0.7rem 0.9rem !important; margin: 0 !important;
 }
+/* Breathing room between a code cell, its printed output and its plot */
+.jupyter-wrapper .jp-CodeCell .jp-Cell-outputWrapper { margin-top: 1rem !important; }
+.jupyter-wrapper .jp-OutputArea-child + .jp-OutputArea-child { margin-top: 1rem !important; }
+.jupyter-wrapper .jp-CodeCell { margin-bottom: 1.2rem; }
 .jupyter-wrapper .jp-RenderedImage img { background: #fff; border-radius: var(--mlx-radius); border: 1px solid var(--mlx-rule); padding: 6px; }
 .jupyter-wrapper .jp-RenderedHTMLCommon { font-size: 0.84rem; line-height: 1.65; }
 
