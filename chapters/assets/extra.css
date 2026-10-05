@@ -329,7 +329,7 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-figure--hero { margin: 1rem 0 1.8rem; cursor: zoom-in; }
 .md-typeset .mlx-figure--hero img[src$=".svg"] { border: 0; background: transparent; }
 .md-typeset .mlx-zoom {
-  position: absolute; top: 0.2rem; right: 0.2rem; z-index: 1; width: 1.8rem; height: 1.8rem;
+  float: right; margin: 0 0 0.3rem 0.8rem; width: 1.8rem; height: 1.8rem;
   border: 1px solid var(--mlx-rule); border-radius: 50%; background: var(--mlx-panel); color: var(--mlx-ink-soft);
   font-size: 0.9rem; line-height: 1; cursor: zoom-in; opacity: 0.75;
 }

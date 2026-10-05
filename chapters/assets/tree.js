@@ -79,7 +79,7 @@
         { t: "pre-norm residual", y: 2019, n: "Keep the identity path clean of normalization (GPT-2 onward)." },
         { t: "residual-stream view", y: 2021, n: "Every layer reads from and writes to one shared stream." } ] } ] },
 
-    { part: "training", title: "Objective and loss", ch: 8, branches: [
+    { part: "training", title: "Objective and loss", ch: 8, ready: "08-objective/", branches: [
       { key: "loss-sup", kind: "supervised", steps: [
         { t: "softmax cross-entropy", y: 2012, n: "Predict the label of each image; AlexNet's objective." } ] },
       { key: "loss-lang", kind: "language", steps: [

@@ -125,7 +125,7 @@
       zoom.type = "button";
       zoom.setAttribute("aria-label", "Enlarge figure");
       zoom.textContent = "\u2922";
-      fig.prepend(zoom);
+      (fig.querySelector("figcaption") || fig).prepend(zoom);
       fig.addEventListener("click", function (ev) {
         if (ev.target.closest("a")) return;
         var art = fig.querySelector("svg, img");

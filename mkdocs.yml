@@ -57,3 +57,5 @@ nav:
       - "5. Channel mixing": 05-channel-mixing/index.ipynb
       - "6. Normalization": 06-normalization/index.ipynb
       - "7. Residual connections": 07-residual/index.ipynb
+  - "Part III · Training recipe":
+      - "8. Objective and loss": 08-objective/index.ipynb
