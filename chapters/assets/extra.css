@@ -418,9 +418,6 @@ body { background: var(--mlx-paper); }
 .mlx-logo__ml { color: var(--mlx-accent); font-weight: 600; }
 .mlx-logo__call { color: var(--mlx-ink-soft); }
 .mlx-logo__cursor { display: inline-block; width: 0.5em; height: 0.12em; margin-left: 0.08em; background: var(--mlx-accent); transform: translateY(0.05em); }
-.md-header .mlx-logo .mlx-logo__cursor { animation: mlx-blink 1.1s steps(1) infinite; }
-@keyframes mlx-blink { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .md-header .mlx-logo .mlx-logo__cursor { animation: none; } }
 .md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; }
 .md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover,
 .md-typeset .mlx-kicker a.mlx-kicker__part:focus-visible, a.mlx-navpart:focus-visible { color: var(--mlx-accent); text-decoration: underline; text-underline-offset: 0.2em; }
