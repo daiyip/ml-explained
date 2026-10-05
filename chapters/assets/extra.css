@@ -386,3 +386,16 @@ body { background: var(--mlx-paper); }
 }
 .mlx-steps__next:hover { background: var(--mlx-accent); color: var(--mlx-accent-ink); }
 @media (max-width: 600px) { .mlx-steps__tab { flex: 0 0 8.5rem; } }
+
+/* "What changed" cards as tabs: the panel joins the tab bar. */
+.md-typeset .mlx-why--tabs { display: block; }
+.md-typeset .mlx-why--tabs > .mlx-why__card { border-top-left-radius: 0; }
+.md-typeset .mlx-why--tabs > .mlx-why__bar { border-bottom: 0; }
+.mlx-why__tab { --c: var(--mlx-accent); }
+.mlx-why__tab--2 { --c: var(--mlx-good); }
+.mlx-why__tab--3 { --c: var(--mlx-warn); }
+.mlx-why__tab .mlx-steps__n { color: var(--c); }
+.mlx-why__tab[aria-selected="true"] { border-top-color: var(--c); }
+.md-typeset .mlx-why--tabs > .mlx-why__bar { padding-bottom: 0; margin-bottom: -1px; }
+.md-typeset .mlx-why--tabs > .mlx-why__card { margin-top: 0; }
+.md-typeset .mlx-why--tabs > .mlx-why__card > .mlx-why__n, .md-typeset .mlx-why--tabs > .mlx-why__card > h3 { display: none; }

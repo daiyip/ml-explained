@@ -140,6 +140,43 @@
       });
     });
 
+    // "What changed" cards become tabs, one per generation.
+    content.querySelectorAll(".mlx-why").forEach(function (why) {
+      var cards = Array.prototype.slice.call(why.querySelectorAll(":scope > .mlx-why__card"));
+      if (cards.length < 2) return;
+      var bar = document.createElement("div");
+      bar.className = "mlx-steps__bar mlx-why__bar";
+      bar.setAttribute("role", "tablist");
+      bar.setAttribute("aria-label", "What changed in each generation");
+      why.prepend(bar);
+      why.classList.add("mlx-why--tabs");
+      var tabs = cards.map(function (card, i) {
+        var n = card.querySelector(".mlx-why__n"), h = card.querySelector("h3");
+        var tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "mlx-steps__tab mlx-why__tab mlx-why__tab--" + (i + 1);
+        tab.id = "mlx-why-tab-" + (i + 1);
+        tab.setAttribute("role", "tab");
+        tab.innerHTML = '<span class="mlx-steps__n"></span><span class="mlx-steps__title"></span>';
+        tab.firstChild.textContent = n ? n.textContent : String(i + 1);
+        tab.lastChild.textContent = h ? h.textContent : "";
+        card.setAttribute("role", "tabpanel");
+        card.setAttribute("aria-labelledby", tab.id);
+        tab.addEventListener("click", function () { pick(i); });
+        bar.append(tab);
+        return tab;
+      });
+      bar.addEventListener("keydown", function (e) {
+        var i = tabs.indexOf(document.activeElement);
+        var j = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i + tabs.length - 1) % tabs.length : -1;
+        if (i >= 0 && j >= 0) { e.preventDefault(); pick(j); tabs[j].focus(); }
+      });
+      function pick(i) {
+        tabs.forEach(function (t, k) { t.setAttribute("aria-selected", String(k === i)); t.tabIndex = k === i ? 0 : -1; cards[k].hidden = k !== i; });
+      }
+      pick(0);
+    });
+
     var first = content.querySelector(".jp-Cell");
     if (!first) return;
     var cells = Array.prototype.filter.call(first.parentElement.children, function (c) { return c.classList.contains("jp-Cell"); });
