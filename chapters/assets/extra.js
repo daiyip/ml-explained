@@ -53,6 +53,12 @@
     var content = document.querySelector(".md-content");
     var h1 = content && content.querySelector(".md-typeset h1");
     if (!h1) return;
+    // Math in running text is written inside code spans so Markdown leaves its backslashes alone; unwrap it.
+    content.querySelectorAll(".md-typeset code").forEach(function (c) {
+      if (c.closest("pre")) return;
+      var t = c.textContent;
+      if (/^\\\([\s\S]+\\\)$/.test(t) || /^\$\$[\s\S]+\$\$$/.test(t)) c.replaceWith(document.createTextNode(t));
+    });
     // Render the key equations; MathML output needs no extra stylesheet or fonts.
     if (window.renderMathInElement) {
       renderMathInElement(content, {
@@ -119,7 +125,7 @@
       zoom.type = "button";
       zoom.setAttribute("aria-label", "Enlarge figure");
       zoom.textContent = "\u2922";
-      fig.prepend(zoom);
+      (fig.querySelector("figcaption") || fig).prepend(zoom);
       fig.addEventListener("click", function (ev) {
         if (ev.target.closest("a")) return;
         var art = fig.querySelector("svg, img");
@@ -195,14 +201,15 @@
       code.forEach(function (c) { d.append(c); });
     });
 
-    // Group each "Step N (level): title" section into a tab.
+    // Group each "Step N (level): title" section (h2 or h3) into a tab; any other h2 ends the group.
     var steps = [], cur = null;
     cells.forEach(function (cell) {
-      var h = cell.classList.contains("jp-MarkdownCell") && cell.querySelector("h2");
+      var md = cell.classList.contains("jp-MarkdownCell");
+      var h = md && cell.querySelector("h2, h3");
       if (h) {
         var m = headingText(h).match(/^Step (\d+)\s*\((\w+)\):\s*(.+)$/);
         if (m) { cur = { h: h, n: m[1], level: m[2], title: m[3], cells: [] }; steps.push(cur); }
-        else cur = null;
+        else if (h.tagName === "H2") cur = null;
       }
       if (cur) cur.cells.push(cell);
     });
@@ -222,7 +229,7 @@
       tab.className = "mlx-steps__tab";
       tab.id = "mlx-tab-" + st.n;
       tab.setAttribute("role", "tab");
-      tab.innerHTML = '<span class="mlx-steps__n">Step ' + st.n + '</span><span class="mlx-steps__lvl mlx-steps__lvl--' + st.level + '">' + st.level + "</span>" +
+      tab.innerHTML = '<span class="mlx-steps__top"><span class="mlx-steps__n">Step ' + st.n + '</span><span class="mlx-steps__lvl mlx-steps__lvl--' + st.level + '">' + st.level + "</span></span>" +
         '<span class="mlx-steps__title"></span>';
       tab.querySelector(".mlx-steps__title").textContent = st.title;
       bar.append(tab);
@@ -272,7 +279,42 @@
     if (!follow()) show(0, false);
   }
 
-  function init() { enhance(); finder(); textbook(); }
+  // "Part II · Architecture" in the chapter kicker and the side navigation links to that part on the home page.
+  var PARTS = { "Anatomy": "", "Architecture": "#architecture", "Training recipe": "#training", "Beyond the block": "#beyond" };
+  function partLinks() {
+    var home = document.querySelector("a.md-logo");
+    if (!home) return;
+    function target(text) {
+      var m = text.match(/^\s*(Part [IVX]+)\s*\u00b7\s*([^\u00b7]+?)\s*(\u00b7|$)/);
+      return m && m[2] in PARTS ? { part: m[1] + " \u00b7 " + m[2], href: home.href.split("#")[0] + PARTS[m[2]] } : null;
+    }
+    document.querySelectorAll(".mlx-kicker").forEach(function (k) {
+      var t = target(k.textContent);
+      if (!t || k.querySelector("a")) return;
+      var a = document.createElement("a");
+      a.href = t.href;
+      a.className = "mlx-kicker__part";
+      a.textContent = t.part;
+      var rest = k.textContent.replace(/^\s*Part [IVX]+\s*\u00b7\s*[^\u00b7]+?\s*(?=\u00b7|$)/, "").trim();
+      k.textContent = rest ? " " + rest : "";
+      k.prepend(a);
+    });
+    document.querySelectorAll(".md-nav--primary .md-nav__item--section > .md-nav__link").forEach(function (label) {
+      var t = target(label.textContent);
+      if (!t) return;
+      var a = document.createElement("a");
+      a.href = t.href;
+      a.className = "mlx-navpart";
+      a.textContent = label.textContent.trim();
+      a.title = "Go to " + t.part + " on the home page";
+      a.addEventListener("click", function (e) { e.stopPropagation(); });
+      var host = label.querySelector(".md-ellipsis") || label;
+      host.textContent = "";
+      host.append(a);
+    });
+  }
+
+  function init() { enhance(); finder(); textbook(); partLinks(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

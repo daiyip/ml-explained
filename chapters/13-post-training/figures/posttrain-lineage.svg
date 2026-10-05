@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="post-fig" viewBox="0 0 960 600" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif">
+<style> .post-fig .t{fill:var(--mlx-ink,#131c27)} .post-fig .q{fill:var(--mlx-ink-soft,#4a5868)} .post-fig .b{fill:var(--mlx-panel,#fff);stroke:var(--mlx-ink-soft,#4a5868);stroke-opacity:.45;stroke-width:1.25} .post-fig .off{opacity:.55} .post-fig .e,.post-fig .e2,.post-fig .e3{fill:none;stroke-width:1.5} .post-fig .e{stroke:var(--mlx-ink-soft,#4a5868)} .post-fig .e2{stroke:var(--mlx-good,#1f8a5b)} .post-fig .e3{stroke:var(--mlx-warn,#b5562b)} .post-fig .ah{fill:var(--mlx-ink-soft,#4a5868)} .post-fig .sep{stroke:var(--mlx-rule,#d3dae3);stroke-dasharray:2 5} .post-fig .n1,.post-fig .n2,.post-fig .n3{stroke-width:2} .post-fig .n1{fill:rgba(38,71,201,.08);fill:color-mix(in srgb,var(--mlx-accent,#2647c9) 12%,transparent);stroke:var(--mlx-accent,#2647c9)} .post-fig .n2{fill:rgba(31,138,91,.08);fill:color-mix(in srgb,var(--mlx-good,#1f8a5b) 14%,transparent);stroke:var(--mlx-good,#1f8a5b)} .post-fig .n3{fill:rgba(181,86,43,.08);fill:color-mix(in srgb,var(--mlx-warn,#b5562b) 14%,transparent);stroke:var(--mlx-warn,#b5562b)} .post-fig .hi1{stroke:var(--mlx-accent,#2647c9);stroke-opacity:1;stroke-width:1.5} .post-fig .hi2{stroke:var(--mlx-good,#1f8a5b);stroke-opacity:1;stroke-width:1.5} .post-fig .tag1{fill:var(--mlx-accent,#2647c9)} .post-fig .tag2{fill:var(--mlx-good,#1f8a5b)} .post-fig .tag3{fill:var(--mlx-warn,#b5562b)} .post-fig .tagt1,.post-fig .tagt2,.post-fig .tagt3{fill:var(--mlx-paper,#fff)}
+</style>
+<defs><marker id="post-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
+<text x="160" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">1. Instruction tuning</text>
+<text x="160" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">FLAN, InstructGPT SFT, 2021-22</text>
+<g transform="translate(0,40)">
+<rect x="50.0" y="440" width="220" height="48" rx="8" class="b"/>
+<text x="160" y="461" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Pretrained model</text>
+<text x="160" y="478" class="q" font-size="13.8" font-weight="400" text-anchor="middle">predicts the next token</text>
+<path d="M160 440 V408" class="e" marker-end="url(#post-a)"/>
+<rect x="50" y="296" width="220" height="110" rx="8" class="n1"/>
+<text x="160" y="318" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Demonstration</text>
+<rect x="68" y="330" width="184" height="26" rx="5" class="b"/>
+<text x="160" y="348" class="q" font-size="13.2" font-weight="400" text-anchor="middle">prompt: Q: love</text>
+<rect x="68" y="362" width="184" height="26" rx="5" class="b hi1"/>
+<text x="160" y="380" class="t" font-size="13.2" font-weight="600" text-anchor="middle">answer: Love is ...</text>
+<path d="M160 296 V252" class="e" marker-end="url(#post-a)"/>
+<rect x="50.0" y="204" width="220" height="48" rx="8" class="b"/>
+<text x="160" y="225" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Cross-entropy</text>
+<text x="160" y="242" class="q" font-size="13.8" font-weight="400" text-anchor="middle">on the answer tokens only</text>
+<path d="M160 204 V150" class="e" marker-end="url(#post-a)"/>
+<rect x="50.0" y="102" width="220" height="48" rx="8" class="b"/>
+<text x="160" y="123" class="t" font-size="16.1" font-weight="600" text-anchor="middle">SFT model</text>
+<text x="160" y="140" class="q" font-size="13.8" font-weight="400" text-anchor="middle">follows the format</text>
+<text x="160" y="530" class="q" font-size="14.4" font-weight="400" text-anchor="middle">signal: every token of a written answer</text>
+</g>
+<text x="480" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">2. Preference learning</text>
+<text x="480" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">RLHF 2022, DPO 2023</text>
+<g transform="translate(0,40)">
+<rect x="370.0" y="440" width="220" height="48" rx="8" class="b"/>
+<text x="480" y="461" class="t" font-size="16.1" font-weight="600" text-anchor="middle">SFT model</text>
+<text x="480" y="478" class="q" font-size="13.8" font-weight="400" text-anchor="middle">writes two answers</text>
+<path d="M480 440 V408" class="e" marker-end="url(#post-a)"/>
+<rect x="370" y="330" width="220" height="76" rx="8" class="n2"/>
+<text x="480" y="352" class="t" font-size="16.1" font-weight="600" text-anchor="middle">A person compares them</text>
+<rect x="388" y="364" width="86" height="26" rx="5" class="b hi2"/>
+<text x="431" y="382" class="t" font-size="13.2" font-weight="600" text-anchor="middle">A  better</text>
+<rect x="486" y="364" width="86" height="26" rx="5" class="b off"/>
+<text x="529" y="382" class="q" font-size="13.2" font-weight="400" text-anchor="middle">B  worse</text>
+<path d="M416 330 V300" class="e" marker-end="url(#post-a)"/>
+<path d="M544 330 V300" class="e2" marker-end="url(#post-a)"/>
+<rect x="356.0" y="252" width="120" height="48" rx="8" class="b"/>
+<text x="416" y="273" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Reward model</text>
+<text x="416" y="290" class="q" font-size="13.8" font-weight="400" text-anchor="middle">Bradley-Terry</text>
+<rect x="484.0" y="252" width="120" height="48" rx="8" class="n2"/>
+<text x="544" y="273" class="t" font-size="16.1" font-weight="600" text-anchor="middle">DPO loss</text>
+<text x="544" y="290" class="q" font-size="13.8" font-weight="400" text-anchor="middle">on the pair</text>
+<path d="M416 252 V222" class="e" marker-end="url(#post-a)"/>
+<rect x="356.0" y="174" width="120" height="48" rx="8" class="b"/>
+<text x="416" y="195" class="t" font-size="16.1" font-weight="600" text-anchor="middle">RL (PPO)</text>
+<text x="416" y="212" class="q" font-size="13.8" font-weight="400" text-anchor="middle">+ KL to SFT</text>
+<path d="M416 174 V150" class="e" marker-end="url(#post-a)"/>
+<path d="M544 252 V150" class="e2" marker-end="url(#post-a)"/>
+<rect x="370.0" y="102" width="220" height="48" rx="8" class="b"/>
+<text x="480" y="123" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Aligned model</text>
+<text x="480" y="140" class="q" font-size="13.8" font-weight="400" text-anchor="middle">stays near the SFT model</text>
+<text x="480" y="530" class="q" font-size="14.4" font-weight="400" text-anchor="middle">signal: which of two answers is better</text>
+</g>
+<text x="800" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">3. RL on verifiable rewards</text>
+<text x="800" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">GRPO, DeepSeek-R1, 2024-25</text>
+<g transform="translate(0,40)">
+<rect x="682.0" y="440" width="236" height="48" rx="8" class="b"/>
+<text x="800" y="461" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Checkable prompt</text>
+<text x="800" y="478" class="q" font-size="13.8" font-weight="400" text-anchor="middle">Q: 23+45, answer known</text>
+<path d="M800 440 V408" class="e" marker-end="url(#post-a)"/>
+<rect x="682" y="330" width="236" height="76" rx="8" class="b"/>
+<text x="800" y="352" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Sample a group of answers</text>
+<rect x="699" y="367" width="34" height="26" rx="6" class="n3"/>
+<text x="716" y="386" class="t" font-size="14.9" font-weight="700" text-anchor="middle">✓</text>
+<rect x="741" y="367" width="34" height="26" rx="6" class="b off"/>
+<text x="758" y="386" class="q" font-size="14.9" font-weight="700" text-anchor="middle">✗</text>
+<rect x="783" y="367" width="34" height="26" rx="6" class="n3"/>
+<text x="800" y="386" class="t" font-size="14.9" font-weight="700" text-anchor="middle">✓</text>
+<rect x="825" y="367" width="34" height="26" rx="6" class="b off"/>
+<text x="842" y="386" class="q" font-size="14.9" font-weight="700" text-anchor="middle">✗</text>
+<rect x="867" y="367" width="34" height="26" rx="6" class="b off"/>
+<text x="884" y="386" class="q" font-size="14.9" font-weight="700" text-anchor="middle">✗</text>
+<path d="M800 330 V300" class="e" marker-end="url(#post-a)"/>
+<rect x="690.0" y="252" width="220" height="48" rx="8" class="n3"/>
+<text x="800" y="273" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Verifier</text>
+<text x="800" y="290" class="q" font-size="13.8" font-weight="400" text-anchor="middle">reward 1 if correct, else 0</text>
+<path d="M800 252 V222" class="e3" marker-end="url(#post-a)"/>
+<rect x="682.0" y="174" width="236" height="48" rx="8" class="b"/>
+<text x="800" y="195" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Group-relative advantage</text>
+<text x="800" y="212" class="q" font-size="13.8" font-weight="400" text-anchor="middle">reward minus the group mean</text>
+<path d="M800 174 V150" class="e" marker-end="url(#post-a)"/>
+<rect x="690.0" y="102" width="220" height="48" rx="8" class="b"/>
+<text x="800" y="123" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Policy gradient</text>
+<text x="800" y="140" class="q" font-size="13.8" font-weight="400" text-anchor="middle">more of what was right</text>
+<text x="800" y="530" class="q" font-size="14.4" font-weight="400" text-anchor="middle">signal: right or wrong, for each sample</text>
+</g>
+<rect x="64.95" y="73" width="190.1" height="19" rx="9.5" class="tag1"/>
+<text x="160" y="87" class="tagt1" font-size="12.1" font-weight="600" text-anchor="middle">NEW: imitate demonstrations</text>
+<rect x="384.95" y="73" width="190.1" height="19" rx="9.5" class="tag2"/>
+<text x="480" y="87" class="tagt2" font-size="12.1" font-weight="600" text-anchor="middle">NEW: learn from comparisons</text>
+<rect x="708.1" y="73" width="183.79999999999998" height="19" rx="9.5" class="tag3"/>
+<text x="800" y="87" class="tagt3" font-size="12.1" font-weight="600" text-anchor="middle">NEW: reward from a checker</text>
+<path d="M320 20 V580" class="sep"/>
+<path d="M640 20 V580" class="sep"/>
+</svg>

@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="tok-fig" viewBox="0 0 960 525" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif">
+<style> .tok-fig .t{fill:var(--mlx-ink,#131c27)} .tok-fig .q{fill:var(--mlx-ink-soft,#4a5868)} .tok-fig .b{fill:var(--mlx-panel,#fff);stroke:var(--mlx-ink-soft,#4a5868);stroke-opacity:.45;stroke-width:1.25} .tok-fig .e{fill:none;stroke-width:1.5;stroke:var(--mlx-ink-soft,#4a5868)} .tok-fig .ah{fill:var(--mlx-ink-soft,#4a5868)} .tok-fig .sep{stroke:var(--mlx-rule,#d3dae3);stroke-dasharray:2 5} .tok-fig .n1,.tok-fig .n2,.tok-fig .n3{stroke-width:2} .tok-fig .n1{fill:rgba(38,71,201,.08);fill:color-mix(in srgb,var(--mlx-accent,#2647c9) 12%,transparent);stroke:var(--mlx-accent,#2647c9)} .tok-fig .n2{fill:rgba(31,138,91,.08);fill:color-mix(in srgb,var(--mlx-good,#1f8a5b) 14%,transparent);stroke:var(--mlx-good,#1f8a5b)} .tok-fig .n3{fill:rgba(181,86,43,.08);fill:color-mix(in srgb,var(--mlx-warn,#b5562b) 14%,transparent);stroke:var(--mlx-warn,#b5562b)} .tok-fig .v1{fill:var(--mlx-accent,#2647c9)} .tok-fig .v2{fill:var(--mlx-good,#1f8a5b)} .tok-fig .v3{fill:var(--mlx-warn,#b5562b)} .tok-fig .px{fill:var(--mlx-warn,#b5562b);fill-opacity:.35;stroke:var(--mlx-warn,#b5562b);stroke-width:1} .tok-fig .tag1{fill:var(--mlx-accent,#2647c9)} .tok-fig .tag2{fill:var(--mlx-good,#1f8a5b)} .tok-fig .tag3{fill:var(--mlx-warn,#b5562b)} .tok-fig .tagt1,.tok-fig .tagt2,.tok-fig .tagt3{fill:var(--mlx-paper,#fff)}
+</style>
+<defs><marker id="tok-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
+<text x="160" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">1. One-hot</text>
+<text x="160" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">characters or whole words</text>
+<text x="160" y="140" class="t" font-size="14.9" font-weight="400" text-anchor="middle">text: “the king”</text>
+<rect x="64" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="74.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">t</text>
+<rect x="88" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="98.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">h</text>
+<rect x="112" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="122.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">e</text>
+<rect x="136" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="146.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">␣</text>
+<rect x="160" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="170.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">k</text>
+<rect x="184" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="194.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">i</text>
+<rect x="208" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="218.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">n</text>
+<rect x="232" y="152" width="20" height="24" rx="5" class="b"/>
+<text x="242.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">g</text>
+<text x="160" y="202" class="q" font-size="13.8" font-weight="400" text-anchor="middle">8 tokens</text>
+<path d="M160 212 V238" class="e" marker-end="url(#tok-a)"/>
+<rect x="45" y="244" width="230" height="168" rx="8" class="n1"/>
+<text x="160" y="266" class="t" font-size="14.9" font-weight="600" text-anchor="middle">one-hot vectors, length V</text>
+<rect x="88" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="99" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="110" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="121" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="1.00"/>
+<rect x="132" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="143" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="154" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="165" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="176" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="187" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="198" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="209" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="220" y="280" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="88" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="99" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="110" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="121" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="132" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="143" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="154" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="1.00"/>
+<rect x="165" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="176" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="187" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="198" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="209" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="220" y="302" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="88" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="99" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="1.00"/>
+<rect x="110" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="121" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="132" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="143" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="154" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="165" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="176" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="187" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="198" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="209" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="220" y="324" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="88" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="99" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="110" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="121" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="132" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="143" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="1.00"/>
+<rect x="154" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="165" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="176" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="187" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="198" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="209" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<rect x="220" y="346" width="9" height="9" rx="2" class="v1" fill-opacity="0.06"/>
+<text x="160" y="384" class="q" font-size="13.2" font-weight="400" text-anchor="middle">every pair equally far apart</text>
+<text x="160" y="400" class="q" font-size="13.2" font-weight="400" text-anchor="middle">cosine(king, queen) = 0</text>
+<text x="160" y="446" class="q" font-size="13.8" font-weight="400" text-anchor="middle">V = 65 characters: long sequences</text>
+<text x="160" y="466" class="q" font-size="13.8" font-weight="400" text-anchor="middle">V = 12,631 words: huge, sparse</text>
+<text x="160" y="486" class="q" font-size="13.8" font-weight="400" text-anchor="middle">rare and new words unseen</text>
+<text x="480" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">2. Learned embeddings</text>
+<text x="480" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">word2vec, then nn.Embedding</text>
+<text x="480" y="140" class="t" font-size="14.9" font-weight="400" text-anchor="middle">text: “the king”</text>
+<rect x="410" y="152" width="60" height="24" rx="5" class="b"/>
+<text x="440.0" y="169" class="t" font-size="13.8" font-weight="600" text-anchor="middle">the</text>
+<rect x="490" y="152" width="60" height="24" rx="5" class="b"/>
+<text x="520.0" y="169" class="t" font-size="13.8" font-weight="600" text-anchor="middle">king</text>
+<text x="480" y="202" class="q" font-size="13.8" font-weight="400" text-anchor="middle">2 tokens (words)</text>
+<path d="M480 212 V238" class="e" marker-end="url(#tok-a)"/>
+<rect x="365" y="244" width="230" height="168" rx="8" class="n2"/>
+<text x="480" y="266" class="t" font-size="14.9" font-weight="600" text-anchor="middle">lookup row of table E (V × d)</text>
+<text x="418" y="290" class="q" font-size="12.6" font-weight="400" text-anchor="end">king</text>
+<rect x="428" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.90"/>
+<rect x="442" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.20"/>
+<rect x="456" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.60"/>
+<rect x="470" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.35"/>
+<rect x="484" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.80"/>
+<rect x="498" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.15"/>
+<rect x="512" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.50"/>
+<rect x="526" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.70"/>
+<text x="418" y="314" class="q" font-size="12.6" font-weight="400" text-anchor="end">queen</text>
+<rect x="428" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.85"/>
+<rect x="442" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.30"/>
+<rect x="456" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.55"/>
+<rect x="470" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.40"/>
+<rect x="484" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.75"/>
+<rect x="498" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.20"/>
+<rect x="512" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.45"/>
+<rect x="526" y="304" width="12" height="12" rx="2" class="v2" fill-opacity="0.65"/>
+<text x="418" y="338" class="q" font-size="12.6" font-weight="400" text-anchor="end">sword</text>
+<rect x="428" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.20"/>
+<rect x="442" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.80"/>
+<rect x="456" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.15"/>
+<rect x="470" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.90"/>
+<rect x="484" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.30"/>
+<rect x="498" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.60"/>
+<rect x="512" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.85"/>
+<rect x="526" y="328" width="12" height="12" rx="2" class="v2" fill-opacity="0.10"/>
+<text x="480" y="384" class="q" font-size="13.2" font-weight="400" text-anchor="middle">trained to predict neighbours</text>
+<text x="480" y="400" class="q" font-size="13.2" font-weight="400" text-anchor="middle">similar use, nearby vectors</text>
+<text x="480" y="446" class="q" font-size="13.8" font-weight="400" text-anchor="middle">d ≈ 100–300 numbers per word</text>
+<text x="480" y="466" class="q" font-size="13.8" font-weight="400" text-anchor="middle">same as one-hot × a weight matrix</text>
+<text x="480" y="486" class="q" font-size="13.8" font-weight="400" text-anchor="middle">still one row per whole word</text>
+<text x="800" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">3. Subwords and patches</text>
+<text x="800" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">BPE, ViT, multimodal</text>
+<text x="800" y="140" class="t" font-size="14.9" font-weight="400" text-anchor="middle">text and image</text>
+<rect x="688" y="152" width="36" height="24" rx="5" class="n3"/>
+<text x="706.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">the</text>
+<rect x="728" y="152" width="36" height="24" rx="5" class="n3"/>
+<text x="746.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle"> k</text>
+<rect x="768" y="152" width="36" height="24" rx="5" class="n3"/>
+<text x="786.0" y="169" class="t" font-size="12.6" font-weight="600" text-anchor="middle">ing</text>
+<rect x="820" y="150" width="20" height="13" rx="2" class="px"/>
+<rect x="842" y="150" width="20" height="13" rx="2" class="px"/>
+<rect x="820" y="165" width="20" height="13" rx="2" class="px"/>
+<rect x="842" y="165" width="20" height="13" rx="2" class="px"/>
+<text x="887" y="169" class="q" font-size="12.1" font-weight="400" text-anchor="middle">patches</text>
+<text x="800" y="202" class="q" font-size="13.8" font-weight="400" text-anchor="middle">3 subwords + 4 patches</text>
+<path d="M800 212 V238" class="e" marker-end="url(#tok-a)"/>
+<rect x="685" y="244" width="230" height="168" rx="8" class="n3"/>
+<text x="800" y="266" class="t" font-size="14.9" font-weight="600" text-anchor="middle">one sequence, width d</text>
+<text x="738" y="290" class="q" font-size="12.6" font-weight="400" text-anchor="end">“ing”</text>
+<rect x="748" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.90"/>
+<rect x="762" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.20"/>
+<rect x="776" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.60"/>
+<rect x="790" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.35"/>
+<rect x="804" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.80"/>
+<rect x="818" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.15"/>
+<rect x="832" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.50"/>
+<rect x="846" y="280" width="12" height="12" rx="2" class="v2" fill-opacity="0.70"/>
+<text x="738" y="314" class="q" font-size="12.6" font-weight="400" text-anchor="end">patch 1</text>
+<rect x="748" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.65"/>
+<rect x="762" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.45"/>
+<rect x="776" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.20"/>
+<rect x="790" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.75"/>
+<rect x="804" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.40"/>
+<rect x="818" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.55"/>
+<rect x="832" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.30"/>
+<rect x="846" y="304" width="12" height="12" rx="2" class="v3" fill-opacity="0.85"/>
+<text x="738" y="338" class="q" font-size="12.6" font-weight="400" text-anchor="end">patch 2</text>
+<rect x="748" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.10"/>
+<rect x="762" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.85"/>
+<rect x="776" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.60"/>
+<rect x="790" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.30"/>
+<rect x="804" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.90"/>
+<rect x="818" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.15"/>
+<rect x="832" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.80"/>
+<rect x="846" y="328" width="12" height="12" rx="2" class="v3" fill-opacity="0.20"/>
+<text x="800" y="384" class="q" font-size="13.2" font-weight="400" text-anchor="middle">lookup for text, linear for pixels</text>
+<text x="800" y="400" class="q" font-size="13.2" font-weight="400" text-anchor="middle">then the same Transformer</text>
+<text x="800" y="446" class="q" font-size="13.8" font-weight="400" text-anchor="middle">V ≈ 32k–200k pieces, no unknowns</text>
+<text x="800" y="466" class="q" font-size="13.8" font-weight="400" text-anchor="middle">a 16×16 patch is one token</text>
+<text x="800" y="486" class="q" font-size="13.8" font-weight="400" text-anchor="middle">any modality, one stream</text>
+<rect x="71.25" y="73" width="177.5" height="19" rx="9.5" class="tag1"/>
+<text x="160" y="87" class="tagt1" font-size="12.1" font-weight="600" text-anchor="middle">NEW: one symbol, one slot</text>
+<rect x="353.45" y="73" width="253.1" height="19" rx="9.5" class="tag2"/>
+<text x="480" y="87" class="tagt2" font-size="12.1" font-weight="600" text-anchor="middle">NEW: a dense vector learned per token</text>
+<rect x="679.75" y="73" width="240.5" height="19" rx="9.5" class="tag3"/>
+<text x="800" y="87" class="tagt3" font-size="12.1" font-weight="600" text-anchor="middle">NEW: a learned vocabulary of pieces</text>
+<path d="M320 20 V505" class="sep"/>
+<path d="M640 20 V505" class="sep"/>
+</svg>

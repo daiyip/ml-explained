@@ -61,7 +61,7 @@ body { background: var(--mlx-paper); }
 
 /* Top bar: brand in Spectral on paper, hairline below */
 .md-header { background: var(--mlx-paper); color: var(--mlx-ink); box-shadow: 0 1px 0 var(--mlx-rule); }
-.md-header__topic:first-child { font-family: var(--mlx-display); font-weight: 600; font-size: 1.05rem; }
+.md-header__topic:first-child { font-family: var(--mlx-display); font-weight: 600; font-size: 1.05rem; overflow: visible; top: 0; bottom: 0; align-items: center; }
 .md-header__button.md-logo { display: none; }
 .md-search__form { background: var(--mlx-panel); border: 1px solid var(--mlx-rule); border-radius: 999px; }
 .md-search__form:hover { background: var(--mlx-panel); border-color: var(--mlx-ink-soft); }
@@ -121,8 +121,13 @@ body { background: var(--mlx-paper); }
 .jupyter-wrapper .highlight pre { font-size: 0.72rem !important; line-height: 1.6 !important; }
 .jupyter-wrapper .jp-OutputArea-output pre {
   font-family: var(--mlx-mono); font-size: 0.7rem; color: var(--mlx-bench-ink); background: var(--mlx-bench);
-  border: 1px solid var(--mlx-bench-rule); border-radius: var(--mlx-radius); padding: 0.7rem 0.9rem; margin: 0.4rem 0 1rem;
+  border: 1px solid var(--mlx-bench-rule); border-radius: var(--mlx-radius); padding: 0.7rem 0.9rem !important; margin: 0 !important;
 }
+/* Breathing room between a code cell, its printed output and its plot */
+.jupyter-wrapper .jp-CodeCell .jp-Cell-outputWrapper { margin-top: 1rem !important; }
+.jupyter-wrapper .jp-OutputArea-child + .jp-OutputArea-child { margin-top: 1rem !important; }
+.jupyter-wrapper .jp-Cell + .jp-CodeCell { margin-top: 1.4rem !important; }
+.jupyter-wrapper .jp-CodeCell + .jp-Cell { margin-top: 1.4rem !important; }
 .jupyter-wrapper .jp-RenderedImage img { background: #fff; border-radius: var(--mlx-radius); border: 1px solid var(--mlx-rule); padding: 6px; }
 .jupyter-wrapper .jp-RenderedHTMLCommon { font-size: 0.84rem; line-height: 1.65; }
 
@@ -321,7 +326,7 @@ body { background: var(--mlx-paper); }
 @media (prefers-reduced-motion: reduce) { .mlx-tree__edge, .mlx-tree__node { transition: none; } }
 .mlx-wrap { min-width: 0; box-sizing: border-box; width: 100%; }
 .mlx-tree, .mlx-tree__bench { min-width: 0; max-width: 100%; }
-@media (max-width: 480px) { .md-header__topic:first-child { font-size: 0.74rem; } }
+
 
 /* ---------- Chapter layout: hero figure, what-changed cards, step tabs ---------- */
 .md-typeset .mlx-figure { position: relative; }
@@ -329,7 +334,7 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-figure--hero { margin: 1rem 0 1.8rem; cursor: zoom-in; }
 .md-typeset .mlx-figure--hero img[src$=".svg"] { border: 0; background: transparent; }
 .md-typeset .mlx-zoom {
-  position: absolute; top: 0.2rem; right: 0.2rem; z-index: 1; width: 1.8rem; height: 1.8rem;
+  float: right; margin: 0 0 0.3rem 0.8rem; width: 1.8rem; height: 1.8rem;
   border: 1px solid var(--mlx-rule); border-radius: 50%; background: var(--mlx-panel); color: var(--mlx-ink-soft);
   font-size: 0.9rem; line-height: 1; cursor: zoom-in; opacity: 0.75;
 }
@@ -375,11 +380,13 @@ body { background: var(--mlx-paper); }
 .mlx-steps__tab[aria-selected="true"] { background: var(--mlx-panel); color: var(--mlx-ink); border-top: 3px solid var(--mlx-accent); border-bottom: 1px solid var(--mlx-panel); }
 .mlx-steps__n { font-family: var(--mlx-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .mlx-steps__title { font-size: 0.8rem; font-weight: 600; line-height: 1.25; }
-.mlx-steps__lvl { position: absolute; top: 0.5rem; right: 0.6rem; font-family: var(--mlx-mono); font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.35rem; border-radius: 0.6rem; border: 1px solid currentColor; }
+.mlx-steps__bar:has(> :nth-child(5)) .mlx-steps__title { font-size: 0.72rem; }
+.mlx-steps__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 0.4rem; width: 100%; }
+.mlx-steps__lvl { font-family: var(--mlx-mono); font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.05rem 0.35rem; border-radius: 0.6rem; border: 1px solid currentColor; }
 .mlx-steps__lvl--major { color: var(--mlx-accent); }
 .mlx-steps__lvl--minor { color: var(--mlx-ink-soft); }
 .mlx-steps__panel { padding-top: 0.4rem; }
-.mlx-steps__panel > .jp-Cell:first-child h2 { margin-top: 0.8rem; }
+.mlx-steps__panel > .jp-Cell:first-child :is(h2, h3) { margin-top: 0.8rem; }
 .mlx-steps__next {
   display: block; margin: 1.4rem 0 0 auto; padding: 0.55rem 0.9rem; border: 1px solid var(--mlx-accent); border-radius: var(--mlx-radius);
   background: var(--mlx-accent-wash); color: var(--mlx-accent); font: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer;
@@ -399,3 +406,48 @@ body { background: var(--mlx-paper); }
 .md-typeset .mlx-why--tabs > .mlx-why__bar { padding-bottom: 0; margin-bottom: -1px; }
 .md-typeset .mlx-why--tabs > .mlx-why__card { margin-top: 0; }
 .md-typeset .mlx-why--tabs > .mlx-why__card > .mlx-why__n, .md-typeset .mlx-why--tabs > .mlx-why__card > h3 { display: none; }
+
+/* ---------- Brand: code wordmark, ml.explained() ---------- */
+.md-header .mlx-logo { display: inline-flex; align-items: baseline; color: var(--mlx-ink); text-decoration: none; line-height: 1;
+  font-family: var(--mlx-mono); font-size: 0.98rem; font-weight: 500; letter-spacing: -0.01em; }
+.mlx-logo__ml { color: var(--mlx-accent); font-weight: 600; }
+.mlx-logo__call { color: var(--mlx-ink-soft); }
+.mlx-logo__cursor { display: inline-block; width: 0.5em; height: 0.12em; margin-left: 0.08em; background: var(--mlx-accent); transform: translateY(0.05em); }
+.md-header .mlx-logo:hover .mlx-logo__cursor { animation: mlx-blink 1s steps(1) infinite; }
+@keyframes mlx-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .md-header .mlx-logo:hover .mlx-logo__cursor { animation: none; } }
+.md-typeset .mlx-kicker a.mlx-kicker__part, a.mlx-navpart { color: inherit; text-decoration: none; }
+.md-typeset .mlx-kicker a.mlx-kicker__part:hover, a.mlx-navpart:hover,
+.md-typeset .mlx-kicker a.mlx-kicker__part:focus-visible, a.mlx-navpart:focus-visible { color: var(--mlx-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* Code highlighting: a calm palette in the site's lab-blue family (cool-toned strings instead of the default red) */
+body[data-md-color-scheme] .jupyter-wrapper {
+  --jp-mirror-editor-keyword-color: #2647c9;
+  --jp-mirror-editor-def-color: #1f3a8a;
+  --jp-mirror-editor-builtin-color: #2c7a6a;
+  --jp-mirror-editor-number-color: #7458b8;
+  --jp-mirror-editor-atom-color: #7458b8;
+  --jp-mirror-editor-string-color: #23788f;
+  --jp-mirror-editor-operator-color: #6b6f86;
+  --jp-mirror-editor-meta-color: #6c5bb0;
+  --jp-mirror-editor-comment-color: #7c8494;
+  --jp-mirror-editor-property-color: #3a4a7a;
+  --jp-mirror-editor-punctuation-color: #5a6170;
+  --jp-mirror-editor-variable-color: #1d2230;
+  --jp-mirror-editor-qualifier-color: #5a6170;
+}
+body[data-md-color-scheme="slate"] .jupyter-wrapper {
+  --jp-mirror-editor-keyword-color: #8fa6ff;
+  --jp-mirror-editor-def-color: #b7c5ff;
+  --jp-mirror-editor-builtin-color: #7cc2b1;
+  --jp-mirror-editor-number-color: #a184f0;
+  --jp-mirror-editor-atom-color: #a184f0;
+  --jp-mirror-editor-string-color: #3fb0d0;
+  --jp-mirror-editor-operator-color: #a3a9bb;
+  --jp-mirror-editor-meta-color: #b9a7f0;
+  --jp-mirror-editor-comment-color: #7f8797;
+  --jp-mirror-editor-property-color: #aab8e6;
+  --jp-mirror-editor-punctuation-color: #a3a9bb;
+  --jp-mirror-editor-variable-color: #dfe3ec;
+  --jp-mirror-editor-qualifier-color: #a3a9bb;
+}

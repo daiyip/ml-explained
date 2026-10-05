@@ -7,6 +7,7 @@ docs_dir: chapters
 theme:
   name: material
   custom_dir: overrides
+  favicon: assets/logo.svg
   font: false
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -50,4 +51,18 @@ nav:
   - "Part I · Anatomy":
       - "1. Anatomy of a modern Transformer": 01-anatomy/index.ipynb
   - "Part II · Architecture":
-      - "5. Channel mixing: sigmoid MLP to MoE": 05-channel-mixing/index.ipynb
+      - "2. Tokens and embeddings": 02-tokens/index.ipynb
+      - "3. Position encoding": 03-position/index.ipynb
+      - "4. Token mixing": 04-token-mixing/index.ipynb
+      - "5. Channel mixing": 05-channel-mixing/index.ipynb
+      - "6. Normalization": 06-normalization/index.ipynb
+      - "7. Residual connections": 07-residual/index.ipynb
+  - "Part III · Training recipe":
+      - "8. Objective and loss": 08-objective/index.ipynb
+      - "9. Optimizer": 09-optimizer/index.ipynb
+      - "10. Learning-rate schedule": 10-lr-schedule/index.ipynb
+      - "11. Initialization": 11-initialization/index.ipynb
+  - "Part IV · Beyond the block":
+      - "12. Scale": 12-scale/index.ipynb
+      - "13. Post-training": 13-post-training/index.ipynb
+      - "14. Inference and use": 14-inference/index.ipynb

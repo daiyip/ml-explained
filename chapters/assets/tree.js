@@ -6,7 +6,7 @@
   // y: first year (null = before 2010), m: major step, n: one-line note.
   // A branch's `from` lists ["branchKey", stepIndex] sources that feed its first step.
   var TREE = [
-    { part: "architecture", title: "Tokens and embeddings", ch: 2, branches: [
+    { part: "architecture", title: "Tokens and embeddings", ch: 2, ready: "02-tokens/", branches: [
       { key: "tok-lang", kind: "language", steps: [
         { t: "one-hot words", y: null, n: "Each word is its own dimension, so no two words are similar." },
         { t: "word2vec", y: 2013, m: 1, n: "Dense word vectors learned from context; similar words land close together." },
@@ -18,7 +18,7 @@
       { key: "tok-mm", kind: "merged", from: [["tok-lang", 3], ["tok-vis", 1]], steps: [
         { t: "multimodal tokens", y: 2022, n: "Image patches and text tokens share one sequence in one model." } ] } ] },
 
-    { part: "architecture", title: "Position encoding", ch: 3, branches: [
+    { part: "architecture", title: "Position encoding", ch: 3, ready: "03-position/", branches: [
       { key: "pos-imp", kind: "implicit", steps: [
         { t: "implicit order", y: null, n: "Convolution windows and recurrence gave order for free." } ] },
       { key: "pos-exp", kind: "explicit", from: [["pos-imp", 0]], steps: [
@@ -29,7 +29,7 @@
         { t: "ALiBi", y: 2021.5, n: "A linear distance penalty on attention scores; extrapolates to longer inputs." },
         { t: "RoPE scaling", y: 2023, n: "Stretch RoPE's frequencies to extend the context window (YaRN and others)." } ] } ] },
 
-    { part: "architecture", title: "Token mixing", ch: 4, branches: [
+    { part: "architecture", title: "Token mixing", ch: 4, ready: "04-token-mixing/", branches: [
       { key: "mix-vis", kind: "vision", steps: [
         { t: "AlexNet convolution", y: 2012, m: 1, n: "A deep CNN trained on GPUs wins ImageNet by a wide margin." },
         { t: "VGG, Inception", y: 2014, n: "Deeper stacks of small filters, and multi-branch modules." } ] },
@@ -63,7 +63,7 @@
         { t: "Mixtral", y: 2023, n: "8 experts, top-2 routing: an open MoE that matches much larger dense models." },
         { t: "DeepSeekMoE", y: 2024, n: "Many fine-grained experts plus always-on shared experts." } ] } ] },
 
-    { part: "architecture", title: "Normalization", ch: 6, branches: [
+    { part: "architecture", title: "Normalization", ch: 6, ready: "06-normalization/", branches: [
       { key: "norm", kind: "main", steps: [
         { t: "none", y: null, n: "Careful initialization was the only defence against drifting activations." },
         { t: "BatchNorm", y: 2015, m: 1, n: "Normalize each channel over the batch; much faster CNN training." },
@@ -72,14 +72,14 @@
         { t: "pre-norm", y: 2020, n: "Normalize before each sub-layer instead of after; deep stacks train stably." },
         { t: "QK-norm", y: 2023, n: "Normalize queries and keys to stop attention logits from blowing up." } ] } ] },
 
-    { part: "architecture", title: "Residual connections", ch: 7, branches: [
+    { part: "architecture", title: "Residual connections", ch: 7, ready: "07-residual/", branches: [
       { key: "res", kind: "main", steps: [
         { t: "highway networks", y: 2015, n: "Gated skip connections let very deep networks train." },
         { t: "ResNet", y: 2015.6, m: 1, n: "Plain identity shortcuts, x + f(x): 152 layers deep wins ImageNet." },
         { t: "pre-norm residual", y: 2019, n: "Keep the identity path clean of normalization (GPT-2 onward)." },
         { t: "residual-stream view", y: 2021, n: "Every layer reads from and writes to one shared stream." } ] } ] },
 
-    { part: "training", title: "Objective and loss", ch: 8, branches: [
+    { part: "training", title: "Objective and loss", ch: 8, ready: "08-objective/", branches: [
       { key: "loss-sup", kind: "supervised", steps: [
         { t: "softmax cross-entropy", y: 2012, n: "Predict the label of each image; AlexNet's objective." } ] },
       { key: "loss-lang", kind: "language", steps: [
@@ -94,7 +94,7 @@
       { key: "loss-clip", kind: "merged", from: [["loss-lang", 3], ["loss-vis", 2]], steps: [
         { t: "contrastive (CLIP)", y: 2021, m: 1, n: "Match images with their captions; one shared image-text space." } ] } ] },
 
-    { part: "training", title: "Optimizer", ch: 9, branches: [
+    { part: "training", title: "Optimizer", ch: 9, ready: "09-optimizer/", branches: [
       { key: "opt", kind: "main", steps: [
         { t: "SGD + momentum", y: null, n: "One learning rate for every parameter." },
         { t: "AdaGrad", y: 2011, n: "A per-parameter step size from the history of squared gradients." },
@@ -104,35 +104,35 @@
         { t: "Lion", y: 2023, n: "A sign-based update found by program search; less memory." },
         { t: "Muon", y: 2024, n: "Orthogonalized momentum updates for matrix weights." } ] } ] },
 
-    { part: "training", title: "Learning-rate schedule", ch: 10, branches: [
+    { part: "training", title: "Learning-rate schedule", ch: 10, ready: "10-lr-schedule/", branches: [
       { key: "lr", kind: "main", steps: [
         { t: "step decay", y: 2012, n: "Divide the learning rate by 10 when progress stalls." },
         { t: "warmup + cosine", y: 2017, m: 1, n: "Ramp up for stability, then decay smoothly to near zero." },
         { t: "warmup-stable-decay", y: 2024, n: "Hold the rate flat and decay only at the end; easy to extend runs." },
         { t: "schedule-free", y: 2024.5, n: "Iterate averaging replaces the schedule altogether." } ] } ] },
 
-    { part: "training", title: "Initialization and regularization", ch: 11, branches: [
+    { part: "training", title: "Initialization and regularization", ch: 11, ready: "11-initialization/", branches: [
       { key: "init", kind: "main", steps: [
         { t: "Xavier init", y: 2010, n: "Scale weights so signal variance is kept across sigmoid and tanh layers." },
         { t: "dropout", y: 2012, n: "Randomly zero units during training to prevent co-adaptation." },
         { t: "He init", y: 2015, n: "Xavier corrected for ReLU's half-zero outputs." },
         { t: "muP", y: 2022, n: "Parametrize so the best hyperparameters transfer from small to large models." } ] } ] },
 
-    { part: "beyond", title: "Scale", ch: 12, branches: [
+    { part: "beyond", title: "Scale", ch: 12, ready: "12-scale/", branches: [
       { key: "scale", kind: "main", steps: [
         { t: "scaling laws", y: 2020, m: 1, n: "Loss falls as a smooth power law in parameters, data and compute." },
         { t: "in-context learning", y: 2020.5, m: 1, n: "GPT-3 learns new tasks from examples in its prompt." },
         { t: "Chinchilla", y: 2022, n: "For a fixed budget, train smaller models on far more tokens." },
         { t: "emergence", y: 2022.5, n: "Some abilities seem to appear suddenly with scale; the claim is debated." } ] } ] },
 
-    { part: "beyond", title: "Post-training", ch: 13, branches: [
+    { part: "beyond", title: "Post-training", ch: 13, ready: "13-post-training/", branches: [
       { key: "post", kind: "main", steps: [
         { t: "instruction tuning", y: 2021, n: "Fine-tune on many tasks phrased as instructions (FLAN, T0)." },
         { t: "RLHF", y: 2022, m: 1, n: "Train a reward model on human preferences, then optimize against it." },
         { t: "DPO", y: 2023, n: "Learn directly from preference pairs, without a separate reward model." },
         { t: "RL on verifiable rewards", y: 2024, m: 1, n: "Reinforce answers that pass checks, such as math and code tests." } ] } ] },
 
-    { part: "beyond", title: "Inference and use", ch: 14, branches: [
+    { part: "beyond", title: "Inference and use", ch: 14, ready: "14-inference/", branches: [
       { key: "use", kind: "main", steps: [
         { t: "chain of thought", y: 2022, n: "Asking for step-by-step reasoning improves answers." },
         { t: "tool use, agents", y: 2023, n: "Models call search, code and other tools in a loop." },
