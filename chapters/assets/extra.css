@@ -439,9 +439,9 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   --jp-mirror-editor-keyword-color: #8fa6ff;
   --jp-mirror-editor-def-color: #b7c5ff;
   --jp-mirror-editor-builtin-color: #7cc2b1;
-  --jp-mirror-editor-number-color: #bba8f2;
-  --jp-mirror-editor-atom-color: #bba8f2;
-  --jp-mirror-editor-string-color: #7fc6d9;
+  --jp-mirror-editor-number-color: #a184f0;
+  --jp-mirror-editor-atom-color: #a184f0;
+  --jp-mirror-editor-string-color: #3fb0d0;
   --jp-mirror-editor-operator-color: #a3a9bb;
   --jp-mirror-editor-meta-color: #b9a7f0;
   --jp-mirror-editor-comment-color: #7f8797;
