@@ -62,3 +62,5 @@ nav:
       - "9. Optimizer": 09-optimizer/index.ipynb
       - "10. Learning-rate schedule": 10-lr-schedule/index.ipynb
       - "11. Initialization": 11-initialization/index.ipynb
+  - "Part IV · Beyond the block":
+      - "14. Inference and use": 14-inference/index.ipynb

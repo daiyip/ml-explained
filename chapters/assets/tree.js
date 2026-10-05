@@ -132,7 +132,7 @@
         { t: "DPO", y: 2023, n: "Learn directly from preference pairs, without a separate reward model." },
         { t: "RL on verifiable rewards", y: 2024, m: 1, n: "Reinforce answers that pass checks, such as math and code tests." } ] } ] },
 
-    { part: "beyond", title: "Inference and use", ch: 14, branches: [
+    { part: "beyond", title: "Inference and use", ch: 14, ready: "14-inference/", branches: [
       { key: "use", kind: "main", steps: [
         { t: "chain of thought", y: 2022, n: "Asking for step-by-step reasoning improves answers." },
         { t: "tool use, agents", y: 2023, n: "Models call search, code and other tools in a loop." },
