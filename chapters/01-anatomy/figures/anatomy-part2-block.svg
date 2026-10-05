@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ana2-fig" viewBox="326 124 308 480" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif">
+<style> .ana2-fig .t{fill:var(--mlx-ink,#131c27)} .ana2-fig .q{fill:var(--mlx-ink-soft,#4a5868)} .ana2-fig .b{fill:var(--mlx-panel,#fff);stroke:var(--mlx-ink-soft,#4a5868);stroke-opacity:.45;stroke-width:1.25} .ana2-fig .off{opacity:.55} .ana2-fig .e,.ana2-fig .e2,.ana2-fig .e3,.ana2-fig .ed{fill:none;stroke-width:1.5} .ana2-fig .e{stroke:var(--mlx-ink-soft,#4a5868)} .ana2-fig .ed{stroke:var(--mlx-ink-soft,#4a5868);stroke-dasharray:3 4;opacity:.6} .ana2-fig .e2{stroke:var(--mlx-good,#1f8a5b)} .ana2-fig .e3{stroke:var(--mlx-warn,#b5562b)} .ana2-fig .ah{fill:var(--mlx-ink-soft,#4a5868)} .ana2-fig .sep{stroke:var(--mlx-rule,#d3dae3);stroke-dasharray:2 5} .ana2-fig .n1,.ana2-fig .n2,.ana2-fig .n3{stroke-width:2} .ana2-fig .n1{fill:rgba(38,71,201,.08);fill:color-mix(in srgb,var(--mlx-accent,#2647c9) 12%,transparent);stroke:var(--mlx-accent,#2647c9)} .ana2-fig .n2{fill:rgba(31,138,91,.08);fill:color-mix(in srgb,var(--mlx-good,#1f8a5b) 14%,transparent);stroke:var(--mlx-good,#1f8a5b)} .ana2-fig .n3{fill:rgba(181,86,43,.08);fill:color-mix(in srgb,var(--mlx-warn,#b5562b) 14%,transparent);stroke:var(--mlx-warn,#b5562b)} .ana2-fig .tag1{fill:var(--mlx-accent,#2647c9)} .ana2-fig .tag2{fill:var(--mlx-good,#1f8a5b)} .ana2-fig .tag3{fill:var(--mlx-warn,#b5562b)} .ana2-fig .tagt1,.ana2-fig .tagt2,.ana2-fig .tagt3{fill:var(--mlx-paper,#fff)} .ana2-fig .res{stroke-width:3;opacity:.8} .ana2-fig .cell{fill:var(--mlx-ink-soft,#4a5868);opacity:.18} .ana2-fig .cell1{fill:var(--mlx-accent,#2647c9);opacity:.75} .ana2-fig .cl2{fill:var(--mlx-good,#1f8a5b)} .ana2-fig .cl3{fill:var(--mlx-warn,#b5562b)}
+</style>
+<defs><marker id="ana2-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
+<text x="480" y="36" class="t" font-size="19.5" font-weight="700" text-anchor="middle">2. One block</text>
+<text x="480" y="57" class="q" font-size="14.9" font-weight="400" text-anchor="middle">repeated N times</text>
+<g transform="translate(0,40)">
+<text x="480" y="512" class="q" font-size="13.8" font-weight="400" text-anchor="middle">x: the residual stream</text>
+<path d="M392 496 V318" class="e2 res"/>
+<path d="M392 292 V136" class="e2 res"/>
+<path d="M392 470 H502 V446" class="e" marker-end="url(#ana2-a)"/>
+<rect x="427.0" y="410" width="150" height="34" rx="8" class="b"/>
+<text x="502" y="432" class="t" font-size="16.1" font-weight="600" text-anchor="middle">RMSNorm</text>
+<path d="M502 410 V384" class="e" marker-end="url(#ana2-a)"/>
+<rect x="427.0" y="330" width="150" height="52" rx="8" class="n2"/>
+<text x="502" y="351" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Attention</text>
+<text x="502" y="368" class="q" font-size="13.8" font-weight="400" text-anchor="middle">mixes across tokens</text>
+<path d="M502 330 V304 H406" class="e" marker-end="url(#ana2-a)"/>
+<circle cx="392" cy="304" r="12" class="n2"/>
+<text x="392" y="309" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<path d="M392 282 H502 V258" class="e" marker-end="url(#ana2-a)"/>
+<rect x="427.0" y="222" width="150" height="34" rx="8" class="b"/>
+<text x="502" y="244" class="t" font-size="16.1" font-weight="600" text-anchor="middle">RMSNorm</text>
+<path d="M502 222 V196" class="e" marker-end="url(#ana2-a)"/>
+<rect x="427.0" y="142" width="150" height="52" rx="8" class="n2"/>
+<text x="502" y="163" class="t" font-size="16.1" font-weight="600" text-anchor="middle">Feed-forward</text>
+<text x="502" y="180" class="q" font-size="13.8" font-weight="400" text-anchor="middle">transforms each token</text>
+<path d="M502 142 V122 H406" class="e" marker-end="url(#ana2-a)"/>
+<circle cx="392" cy="122" r="12" class="n2"/>
+<text x="392" y="127" class="t" font-size="17.2" font-weight="600" text-anchor="middle">+</text>
+<text x="392" y="98" class="q" font-size="12.6" font-weight="400" text-anchor="middle">to the next block</text>
+<text x="390" y="404" class="cl2" font-size="12.1" font-weight="600" text-anchor="end">residual</text>
+</g>
+<text x="480" y="588" class="q" font-size="14.4" font-weight="400" text-anchor="middle">norm and residual keep a deep stack trainable</text>
+</svg>

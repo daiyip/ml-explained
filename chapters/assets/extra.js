@@ -78,7 +78,7 @@
       h.prepend(n);
     });
     content.querySelectorAll(".md-typeset img[alt]").forEach(function (img) {
-      if (!img.alt || /^No description/.test(img.alt) || img.closest("a") || img.closest("figure")) return;
+      if (!img.alt || /^No description/.test(img.alt) || img.closest("a") || img.closest("figure") || img.closest(".mlx-why")) return;
       var f = document.createElement("figure"), cap = document.createElement("figcaption");
       f.className = "mlx-figure";
       cap.innerHTML = "<b>Figure " + ch + "." + (++fig) + "</b> ";
@@ -109,6 +109,17 @@
   // Chapter pages: themed inline figures that enlarge on click, a folded set-up section,
   // and the "Step N" sections shown as tabs.
   function chapterLayout(content) {
+    // Small diagrams inside the "What changed" cards: inline them so they follow the theme.
+    content.querySelectorAll(".mlx-why img.mlx-why__fig[src$='.svg']").forEach(function (img) {
+      fetch(img.src).then(function (r) { if (!r.ok) throw r; return r.text(); }).then(function (t) {
+        var svg = new DOMParser().parseFromString(t, "image/svg+xml").documentElement;
+        if (svg.nodeName.toLowerCase() !== "svg") return;
+        svg.setAttribute("role", "img");
+        svg.setAttribute("aria-label", img.alt);
+        svg.classList.add("mlx-why__fig");
+        img.replaceWith(document.importNode(svg, true));
+      }).catch(function () {});
+    });
     content.querySelectorAll(".mlx-figure img[src$='.svg']").forEach(function (img, i) {
       var fig = img.closest(".mlx-figure");
       if (i === 0) fig.classList.add("mlx-figure--hero");

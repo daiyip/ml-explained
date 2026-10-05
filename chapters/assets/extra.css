@@ -451,3 +451,8 @@ body[data-md-color-scheme="slate"] .jupyter-wrapper {
   --jp-mirror-editor-variable-color: #dfe3ec;
   --jp-mirror-editor-qualifier-color: #a3a9bb;
 }
+
+/* A small diagram inside a "What changed" card, beside the text */
+.mlx-why .mlx-why__fig { float: right; width: min(40%, 17rem); height: auto; margin: 0 0 0.6rem 1.2rem; }
+.mlx-why__card::after { content: ""; display: block; clear: both; }
+@media (max-width: 40em) { .mlx-why .mlx-why__fig { float: none; display: block; width: min(100%, 17rem); margin: 0 auto 0.8rem; } }
