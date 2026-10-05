@@ -118,7 +118,7 @@
         { t: "He init", y: 2015, n: "Xavier corrected for ReLU's half-zero outputs." },
         { t: "muP", y: 2022, n: "Parametrize so the best hyperparameters transfer from small to large models." } ] } ] },
 
-    { part: "beyond", title: "Scale", ch: 12, branches: [
+    { part: "beyond", title: "Scale", ch: 12, ready: "12-scale/", branches: [
       { key: "scale", kind: "main", steps: [
         { t: "scaling laws", y: 2020, m: 1, n: "Loss falls as a smooth power law in parameters, data and compute." },
         { t: "in-context learning", y: 2020.5, m: 1, n: "GPT-3 learns new tasks from examples in its prompt." },

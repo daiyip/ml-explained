@@ -63,4 +63,5 @@ nav:
       - "10. Learning-rate schedule": 10-lr-schedule/index.ipynb
       - "11. Initialization": 11-initialization/index.ipynb
   - "Part IV · Beyond the block":
+      - "12. Scale": 12-scale/index.ipynb
       - "14. Inference and use": 14-inference/index.ipynb
