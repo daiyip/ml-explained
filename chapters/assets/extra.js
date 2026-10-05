@@ -195,14 +195,15 @@
       code.forEach(function (c) { d.append(c); });
     });
 
-    // Group each "Step N (level): title" section into a tab.
+    // Group each "Step N (level): title" section (h2 or h3) into a tab; any other h2 ends the group.
     var steps = [], cur = null;
     cells.forEach(function (cell) {
-      var h = cell.classList.contains("jp-MarkdownCell") && cell.querySelector("h2");
+      var md = cell.classList.contains("jp-MarkdownCell");
+      var h = md && cell.querySelector("h2, h3");
       if (h) {
         var m = headingText(h).match(/^Step (\d+)\s*\((\w+)\):\s*(.+)$/);
         if (m) { cur = { h: h, n: m[1], level: m[2], title: m[3], cells: [] }; steps.push(cur); }
-        else cur = null;
+        else if (h.tagName === "H2") cur = null;
       }
       if (cur) cur.cells.push(cell);
     });

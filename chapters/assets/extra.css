@@ -379,7 +379,7 @@ body { background: var(--mlx-paper); }
 .mlx-steps__lvl--major { color: var(--mlx-accent); }
 .mlx-steps__lvl--minor { color: var(--mlx-ink-soft); }
 .mlx-steps__panel { padding-top: 0.4rem; }
-.mlx-steps__panel > .jp-Cell:first-child h2 { margin-top: 0.8rem; }
+.mlx-steps__panel > .jp-Cell:first-child :is(h2, h3) { margin-top: 0.8rem; }
 .mlx-steps__next {
   display: block; margin: 1.4rem 0 0 auto; padding: 0.55rem 0.9rem; border: 1px solid var(--mlx-accent); border-radius: var(--mlx-radius);
   background: var(--mlx-accent-wash); color: var(--mlx-accent); font: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer;
