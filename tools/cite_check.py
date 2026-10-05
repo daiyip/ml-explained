@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import html
 import json
 import os
 import pathlib
@@ -29,6 +30,7 @@ import xml.etree.ElementTree as ET
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
 CITATION = re.compile(r"(?:^|\n)[-*] ([^\n\[\]]+?), (\d{4})[a-z]?, \[([^\]]+)\]\((\S+?)\)")
+DOI = re.compile(r"doi\.org/(10\.\S+)")
 ARXIV_ID = re.compile(r"arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5}|[a-z\-]+/\d{7})")
 S2 = "https://api.semanticscholar.org/graph/v1"
 S2_FIELDS = "title,year,authors,publicationDate,externalIds,venue"
@@ -60,7 +62,7 @@ def citations() -> list[dict]:
         nb = json.loads(nb_path.read_text())
         text = "\n\n".join("".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "markdown")
         for authors, year, title, url in CITATION.findall(text):
-            found.append({"chapter": nb_path.parent.name, "authors": authors.strip(), "year": int(year),
+            found.append({"chapter": nb_path.parent.name, "authors": html.unescape(authors.strip()), "year": int(year),
                           "title": title.strip(), "url": url})
     return found
 
@@ -108,8 +110,11 @@ def arxiv_lookup(ids: list[str], fetch=get) -> dict[str, dict]:
 
 
 def s2_lookup(c: dict, arxiv_id: str | None, fetch=get) -> dict | None:
+    doi = DOI.search(c["url"])
     if arxiv_id:
         raw = fetch(f"{S2}/paper/arXiv:{arxiv_id}?fields={S2_FIELDS}")
+    elif doi:
+        raw = fetch(f"{S2}/paper/DOI:{doi.group(1)}?fields={S2_FIELDS}")
     else:
         raw = fetch(f"{S2}/paper/search/match?" + urllib.parse.urlencode({"query": c["title"], "fields": S2_FIELDS}))
     if not raw:
@@ -119,6 +124,13 @@ def s2_lookup(c: dict, arxiv_id: str | None, fetch=get) -> dict | None:
     time.sleep(1.1)
     return {"title": paper.get("title") or "", "year": paper.get("year"),
             "authors": [a["name"] for a in paper.get("authors") or []], "venue": paper.get("venue") or ""}
+
+
+def link_works(url: str, fetch=get) -> bool:
+    try:
+        return fetch(url) is not None
+    except (urllib.error.HTTPError, ValueError):
+        return False
 
 
 def check(c: dict, paper: dict | None, venue: dict | None) -> list[str]:
@@ -134,13 +146,16 @@ def check(c: dict, paper: dict | None, venue: dict | None) -> list[str]:
     actual = ref["authors"] or (venue or {}).get("authors") or []
     if names and actual and surname(names[0]) != surname(actual[0]):
         problems.append(f"first author is {actual[0]}, not {names[0]}")
-    if actual:
+    corporate = len(names) == 1 and actual and norm(names[0]) == norm(actual[0])
+    if actual and not corporate:
         if et_al and len(actual) < 3:
             problems.append(f"\"et al.\" but the paper has {len(actual)} authors: {', '.join(actual)}")
         elif not et_al and len(names) != len(actual):
             shown = ", ".join(actual) if len(actual) <= 4 else f"{actual[0]} and {len(actual) - 1} others"
             problems.append(f"names {len(names)} authors, the paper has {len(actual)}: {shown}")
     years = {y for y in [paper and paper["year"], venue and venue["year"]] if y}
+    if paper and venue and venue["venue"]:
+        years.add(paper["year"] + 1)  # conference version, a year after the preprint
     if years and c["year"] not in years:
         problems.append(f"year {c['year']}, but the paper is from {' / '.join(map(str, sorted(years)))}")
     return problems
@@ -153,7 +168,7 @@ def run(fetch=get) -> tuple[str, int]:
     rows, n_problems = [], 0
     for chapter in sorted({c["chapter"] for c in cites}):
         mine = [c for c in cites if c["chapter"] == chapter]
-        bad = []
+        bad, notes = [], []
         for c in mine:
             m = ARXIV_ID.search(c["url"])
             arxiv_id = m.group(1) if m else None
@@ -161,7 +176,13 @@ def run(fetch=get) -> tuple[str, int]:
             if arxiv_id and paper is None:
                 bad.append((c, [f"arXiv {arxiv_id} not found"]))
                 continue
+            if paper and not check(c, paper, None):
+                continue  # arXiv alone confirms it; skip the slower Semantic Scholar lookup
             venue = s2_lookup(c, arxiv_id, fetch)
+            if not paper and venue is None:
+                if link_works(c["url"], fetch):
+                    notes.append((c, "not in a paper index (blog post or web page); the link works"))
+                    continue
             if problems := check(c, paper, venue):
                 bad.append((c, problems))
         n_problems += len(bad)
@@ -169,6 +190,8 @@ def run(fetch=get) -> tuple[str, int]:
         for c, problems in bad:
             rows.append(f"- {c['authors']}, {c['year']}, [{c['title']}]({c['url']})")
             rows += [f"  - {p}" for p in problems]
+        for c, note in notes:
+            rows.append(f"- Not checked: {c['authors']}, {c['year']}, [{c['title']}]({c['url']}): {note}")
         rows.append("")
     head = f"# Citation check\n\n{len(cites)} citations, {n_problems} with something to look at.\n\n"
     return head + "\n".join(rows), n_problems
