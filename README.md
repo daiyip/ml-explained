@@ -60,3 +60,9 @@ python tools/survey.py channel-mixing --out surveys/channel-mixing.md
 ```
 
 An optional `S2_API_KEY` repository secret raises the Semantic Scholar rate limit.
+
+## Licence
+
+The code (`mlexp/`, `tools/` and the notebooks' code cells) is [MIT](LICENSE). The text and figures are
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), so you may quote, translate and teach from them with
+credit. See [LICENSES.md](LICENSES.md).
