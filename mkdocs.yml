@@ -2,7 +2,7 @@ site_name: Transformer Explained
 site_description: "Transformer Explained: a modern Transformer taken apart, one building block at a time."
 site_url: https://transformer.daiyip.com/
 repo_url: https://github.com/daiyip/transformer-explained
-copyright: "Copyright &copy; 2026 Daiyi Peng"
+copyright: "Copyright &copy; 2026 Daiyi Peng. Text and figures <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC BY-SA 4.0</a>, code MIT."
 docs_dir: chapters
 
 theme:
